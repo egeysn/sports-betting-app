@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "912153389087",
+    "project_id": "kotlin-base-project-d1d62",
+    "storage_bucket": "kotlin-base-project-d1d62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912153389087:android:92465a096061998213cd2a",
+        "android_client_info": {
+          "package_name": "com.naylalabs.kotlinbaseproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912153389087-ilfa0kaba4rlhia21r7oau0drn2cuh61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZpbIbe94DKpo3KHjG0Rb6rtjfIh0jfCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912153389087-ilfa0kaba4rlhia21r7oau0drn2cuh61.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
