@@ -119,6 +119,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-messaging-ktx'
 
+    // joda time
+    implementation 'net.danlew:android.joda:2.10.14'
+
+    def lottieVersion = "5.0.3"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
 }
 
 static def getDate() {

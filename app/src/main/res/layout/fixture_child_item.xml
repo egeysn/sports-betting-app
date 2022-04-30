@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="10dp"
-            android:paddingVertical="4dp">
+            android:paddingVertical="5dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -50,6 +50,7 @@
                     android:layout_toEndOf="@id/home_club_rl"
                     android:fontFamily="@font/roboto_400"
                     android:gravity="center"
+                    android:maxLines="2"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="14sp"
@@ -61,22 +62,22 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_centerVertical="true"
-                    app:cardBackgroundColor="@color/score_background_color"
-                    app:cardCornerRadius="16dp">
+                    app:cardBackgroundColor="@color/score_background_color">
 
                     <TextView
+                        android:id="@+id/score_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
                         android:layout_marginVertical="2dp"
-                        android:fontFamily="@font/roboto_300"
+                        android:fontFamily="@font/roboto_700"
                         android:gravity="center"
-                        tools:text="2-1"
+                        android:maxLines="1"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="15sp" />
+                        android:textSize="14sp"
+                        tools:text="2-1" />
                 </androidx.cardview.widget.CardView>
 
 
@@ -89,6 +90,7 @@
                     android:layout_toStartOf="@id/away_club_rl"
                     android:layout_toEndOf="@id/score_cv"
                     android:fontFamily="@font/roboto_400"
+                    android:maxLines="2"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="14sp"
@@ -113,64 +115,6 @@
                 </RelativeLayout>
 
             </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/match_status_container_rl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/home_score_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerInParent="true"
-                    android:layout_toStartOf="@id/match_status_tv"
-                    android:fontFamily="@font/roboto_700"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                   />
-
-                <TextView
-                    android:id="@+id/match_status_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/roboto_400"
-                    android:text="Match Finished"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/away_score_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:layout_toEndOf="@id/match_status_tv"
-                    android:fontFamily="@font/roboto_700"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    />
-            </RelativeLayout>
-
-
-            <TextView
-                android:id="@+id/date_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/roboto_700"
-                android:gravity="center"
-                android:text="22 : 00"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:visibility="invisible" />
 
 
         </LinearLayout>

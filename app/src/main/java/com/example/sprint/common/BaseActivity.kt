@@ -2,6 +2,7 @@ package com.example.sprint.common
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import com.example.sprint.data.locale.CacheHelper
 import com.example.sprint.utils.GeneralUtils
 import com.example.sprint.utils.LoadingHelper
@@ -14,22 +15,24 @@ open class BaseActivity : AppCompatActivity() {
     @Inject
     lateinit var cacheHelper: CacheHelper
 
-    private lateinit var loadingHelper: LoadingHelper
+    private val loadingHelper by lazy { LoadingHelper() }
     private lateinit var generalUtils: GeneralUtils
+    private var myContext: FragmentActivity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        loadingHelper = LoadingHelper.getInstance(this@BaseActivity)
         generalUtils = GeneralUtils.getInstance(this@BaseActivity)
     }
 
     fun showLoading() {
-        runOnUiThread {
-            loadingHelper.showDialog()
+        if (!loadingHelper.isAdded) {
+            myContext?.let { loadingHelper.show(it.supportFragmentManager, "loading") }
         }
     }
 
     fun hideLoading() {
-        runOnUiThread { loadingHelper.hideDialog() }
+        if (loadingHelper.isAdded) {
+            loadingHelper.dismissAllowingStateLoss()
+        }
     }
 }

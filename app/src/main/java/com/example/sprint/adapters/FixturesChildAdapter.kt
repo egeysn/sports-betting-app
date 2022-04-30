@@ -11,6 +11,7 @@ import com.example.sprint.data.entities.ScoreModel
 import com.example.sprint.databinding.FixtureChildItemBinding
 import com.example.sprint.utils.Constants
 import com.example.sprint.utils.GeneralUtils
+import com.example.sprint.utils.toHour
 
 class FixturesChildAdapter(private val fixtures: List<ScoreModel>, private val context: Context) :
     RecyclerView.Adapter<FixturesChildAdapter.FixturesChildViewHolder>() {
@@ -49,7 +50,12 @@ class FixturesChildAdapter(private val fixtures: List<ScoreModel>, private val c
             }
 
 
-            binding.dateTv.text = fixture.commenceTime.toString()
+            if(fixture.scores == null){
+                binding.scoreTv.text = fixture.commenceTime.toHour()
+            }else{
+                binding.scoreTv.text = "${fixture.scores[0].score } - ${fixture.scores[1].score}"
+
+            }
 
             Glide.with(binding.root.context)
                 .load(Constants.HOME_TEAM_LOGO)

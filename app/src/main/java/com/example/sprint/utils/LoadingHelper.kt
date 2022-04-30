@@ -4,12 +4,48 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.Window
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.example.sprint.R
 
-@SuppressLint("InflateParams")
+
+class LoadingHelper : DialogFragment() {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        isCancelable = false
+
+        return  inflater.inflate(R.layout.progress_dialog, container, false)
+    }
+
+    //over rid  this due to some issues that occur when trying to show a the dialog after onSaveInstanceState
+    override fun show(manager: FragmentManager, tag: String?) {
+        try {
+
+            val ft = manager.beginTransaction()
+            ft.add(this, tag)
+            ft.commitAllowingStateLoss()
+            manager.executePendingTransactions()
+        } catch (ignored: IllegalStateException) {
+
+        }
+    }
+
+
+
+}
+
+/*@SuppressLint("InflateParams")
 class LoadingHelper(private var context: Context) {
     private var dialog: Dialog = Dialog(context, R.style.MyAlertDialogStyle)
 
@@ -23,13 +59,7 @@ class LoadingHelper(private var context: Context) {
     fun showDialog() {
         try {
             if (!dialog.isShowing) {
-                if (context is Activity) {
-                    if (!(context as Activity).isFinishing) {
-                        dialog.show()
-                    }
-                } else {
-                    dialog.show()
-                }
+                dialog.show()
             }
         } catch (e: Exception) {
             FirebaseCrashlytics.getInstance().recordException(e)
@@ -50,13 +80,5 @@ class LoadingHelper(private var context: Context) {
         }
     }
 
-    companion object {
-        @SuppressLint("StaticFieldLeak")
-        @Volatile
-        private var instance: LoadingHelper? = null
 
-        fun getInstance(context: Context) = instance ?: synchronized(this) {
-            instance ?: LoadingHelper(context).also { instance = it }
-        }
-    }
-}
+}*/

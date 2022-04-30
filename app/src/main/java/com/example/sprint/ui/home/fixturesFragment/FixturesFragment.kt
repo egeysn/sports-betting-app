@@ -30,8 +30,7 @@ class FixturesFragment() :
     ): View {
         binding = FragmentFixturesBinding.inflate(inflater, container, false)
 
-        // initDateRecyclerView()
-        // initRecyclerView()
+
         setupObservers()
         return binding.root
     }
