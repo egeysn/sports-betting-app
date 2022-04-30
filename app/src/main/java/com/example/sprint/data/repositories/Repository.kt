@@ -1,5 +1,6 @@
 package com.example.sprint.data.repositories
 
+import com.example.sprint.BuildConfig
 import com.example.sprint.common.BaseDataSource
 import com.example.sprint.data.remote.ApiService
 import com.example.sprint.utils.performOperation
@@ -12,6 +13,17 @@ class Repository @Inject constructor(
 
     fun getCharacterDetail(id: Int) = performOperation { getResult { apiService.getCharacter(id) } }
 
+
+    fun getScores(sport: String, daysFrom: Int) =
+        performOperation {
+            getResult {
+                apiService.getScores(
+                    sport,
+                    daysFrom,
+                    BuildConfig.API_KEY
+                )
+            }
+        }
 
 
 }

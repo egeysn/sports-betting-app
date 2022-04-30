@@ -8,7 +8,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sprint.common.BaseFragment
+import com.example.sprint.data.entities.ScoreModel
 import com.example.sprint.databinding.FragmentFixturesBinding
+import com.example.sprint.utils.Resource
+import com.naylalabs.scorely.adapters.FixturesParentAdapter
 
 class FixturesFragment() :
     BaseFragment() {
@@ -16,11 +19,9 @@ class FixturesFragment() :
     private lateinit var binding: FragmentFixturesBinding
     private val viewModel: FixturesViewModel by activityViewModels()
 
-    private lateinit var rvMyFixtures: RecyclerView
-    private lateinit var dateRecyclerView: RecyclerView
+    private lateinit var adapter: FixturesParentAdapter
     lateinit var layoutManager: LinearLayoutManager
 
-    var isLoading = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,63 +33,56 @@ class FixturesFragment() :
         // initDateRecyclerView()
         // initRecyclerView()
         setupObservers()
-
         return binding.root
     }
 
-    private fun setupObservers() {
 
-     /*   viewModel.fixtures.observe(viewLifecycleOwner) {
-            isLoading = true
+    private fun setupObservers() {
+        viewModel.fetchFixtures().observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    val fixtureList = it.data?.data
-
+                    val fixtureList = it.data
+                    if (!fixtureList.isNullOrEmpty()) {
+                        onFixtureListFetched(fixtureList)
+                    } else {
+                        binding.emptyList.visibility = View.VISIBLE
+                    }
                     hideLoading()
                 }
                 Resource.Status.ERROR -> {
-                    isLoading = false
+                    binding.emptyList.visibility = View.VISIBLE
                     hideLoading()
                 }
                 Resource.Status.LOADING -> {
-                    isLoading = true
                     showLoading()
                 }
             }
-        }*/
+        }
+
     }
 
-/*    private fun initDateRecyclerView() {
-        dateRecyclerView = binding.dateRecyclerview
-        dateAdapter = FixtureDatesAdapter(viewModel.getDates())
-        dateRecyclerView.layoutManager =
-            LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        dateRecyclerView.adapter = dateAdapter
-        dateRecyclerView.scrollToPosition(2)
-        dateAdapter.setListener(this)
-    }*/
+    private fun onFixtureListFetched(fixtureList: ArrayList<ScoreModel>) {
+        val groupList = fixtureList.groupBy { it.sportTitle }
+        initRecyclerView(groupList as HashMap)
+    }
 
-/*    private fun initRecyclerView() {
+
+    private fun initRecyclerView(hashMap: HashMap<String, List<ScoreModel>>) {
         layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        rvMyFixtures = binding.recyclerView
-        rvMyFixtures.layoutManager = layoutManager
-        rvMyFixtures.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                val visibleItemCount = layoutManager.childCount
-                val pastVisibleItem = layoutManager.findLastVisibleItemPosition()
-                val total = layoutManager.itemCount
-                if (!isLoading) {
-                    if ((visibleItemCount + pastVisibleItem) >= total) {
-                        viewModel.listScrolled()
-                    }
-                }
-                super.onScrolled(recyclerView, dx, dy)
-            }
-        })
-    }*/
+        binding.fixtureRv.layoutManager = layoutManager
+        if (::adapter.isInitialized) {
+            adapter.setItems(hashMap)
+        } else {
+            adapter = FixturesParentAdapter(requireContext())
+            binding.fixtureRv.adapter = adapter
+            adapter.setItems(hashMap)
+        }
 
-    /*  *//**
-     Maç tarihi değiştiğinde fixtureList sıfırlanacak ve yeni tarihe göre apiden istek yapılacak
+    }
+
+    /*  */
+    /**
+    Maç tarihi değiştiğinde fixtureList sıfırlanacak ve yeni tarihe göre apiden istek yapılacak
      *//*
      fun onClickedDate(date: DateTime) {
         viewModel.page = 0

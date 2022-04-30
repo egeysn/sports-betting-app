@@ -14,7 +14,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/fixture_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/date_recyclerview"
@@ -24,7 +24,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
-        android:id="@+id/emptyList"
+        android:id="@+id/empty_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
