@@ -109,8 +109,8 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="26dp"
-                android:layout_height="26dp">
+                android:layout_width="32dp"
+                android:layout_height="32dp">
 
                 <ImageView
                     android:id="@+id/favorites_iv"
@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_star"
+                    android:src="@drawable/ic_nav_more"
                     tools:tint="@color/white" />
 
             </RelativeLayout>
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="2dp"
                 android:lineSpacingExtra="4dp"
-                android:text="@string/favorites"
+                android:text="@string/more"
                 android:textColor="@color/black"
                 android:textSize="10sp" />
         </LinearLayout>
