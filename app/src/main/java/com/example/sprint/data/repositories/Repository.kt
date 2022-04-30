@@ -5,7 +5,7 @@ import com.example.sprint.data.remote.ApiService
 import com.example.sprint.utils.performOperation
 import javax.inject.Inject
 
-class CharacterRepository @Inject constructor(
+class Repository @Inject constructor(
     private val apiService: ApiService
 ) : BaseDataSource() {
     fun getCharacters() = performOperation { getResult { apiService.getAllCharacters() } }

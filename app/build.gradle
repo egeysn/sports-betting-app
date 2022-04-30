@@ -26,10 +26,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", "\"https://rickandmortyapi.com/api/\""
+            buildConfigField "String", "BASE_URL", "\"https://api.the-odds-api.com/v4/\""
+            buildConfigField "String", "API_KEY", "2de4ad81b4a6809d68704b6f9fdec107"
         }
         debug {
-            buildConfigField "String", "BASE_URL", "\"https://rickandmortyapi.com/api/\""
+            buildConfigField "String", "BASE_URL", "\"https://api.the-odds-api.com/v4/\""
+            buildConfigField "String", "API_KEY", "2de4ad81b4a6809d68704b6f9fdec107"
         }
     }
     compileOptions {

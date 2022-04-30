@@ -6,7 +6,6 @@ import android.view.View
 import android.view.Window
 import com.example.sprint.R
 
-
 class PopupHelper() {
     private var dialog: Dialog? = null
 
@@ -51,7 +50,6 @@ class PopupHelper() {
         }
     }
 
-
     companion object {
         @Volatile
         private var instance: PopupHelper? = null
@@ -60,7 +58,6 @@ class PopupHelper() {
             instance ?: PopupHelper().also { instance = it }
         }
     }
-
 
     interface SingleButtonClickListener {
         fun onPositiveClicked(dialog: Dialog?)

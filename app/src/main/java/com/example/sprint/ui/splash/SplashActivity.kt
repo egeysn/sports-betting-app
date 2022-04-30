@@ -1,14 +1,14 @@
 package com.example.sprint.ui.splash
 
-import android.app.Dialog
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.sprint.BuildConfig
 import com.example.sprint.common.BaseActivity
 import com.example.sprint.databinding.ActivitySplashBinding
 import com.example.sprint.services.RemoteConfigService
-import com.example.sprint.ui.characters.CharactersActivity
+import com.example.sprint.ui.home.HomeActivity
 import com.example.sprint.utils.PopupHelper
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -35,7 +35,7 @@ class SplashActivity : BaseActivity() {
             showForceUpdateDialog()
             return
         }
-        startActivity(CharactersActivity.createSimpleIntent(this))
+        startActivity(HomeActivity.createSimpleIntent(this))
         finish()
     }
 
@@ -45,33 +45,32 @@ class SplashActivity : BaseActivity() {
             .getForceUpdateVersionAndroid()
     }
 
-
     private fun showUnderMaintenance() {
         PopupHelper.getInstance()
-            .showUnderMaintenanceDialog(this, object : PopupHelper.SingleButtonClickListener {
-                override fun onPositiveClicked(dialog: Dialog?) {
-                    dialog?.dismiss()
-                    finish()
+            .showUnderMaintenanceDialog(
+                this,
+                object : PopupHelper.SingleButtonClickListener {
+                    override fun onPositiveClicked(dialog: Dialog?) {
+                        dialog?.dismiss()
+                        finish()
+                    }
                 }
-
-            }
             )
     }
 
     private fun showForceUpdateDialog() {
         PopupHelper.getInstance()
-            .showForceUpdateDialog(this, object : PopupHelper.TwoButtonClickListener {
-                override fun onPositiveClicked(dialog: Dialog?) {
-                    dialog?.dismiss()
-                }
+            .showForceUpdateDialog(
+                this,
+                object : PopupHelper.TwoButtonClickListener {
+                    override fun onPositiveClicked(dialog: Dialog?) {
+                        dialog?.dismiss()
+                    }
 
-                override fun onNegativeClicked(dialog: Dialog?) {
-                    dialog?.dismiss()
+                    override fun onNegativeClicked(dialog: Dialog?) {
+                        dialog?.dismiss()
+                    }
                 }
-
-            }
             )
     }
-
-
 }
