@@ -8,7 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sprint.common.BaseFragment
-import com.example.sprint.data.entities.ScoreModel
+import com.example.sprint.data.entities.OddModel
 import com.example.sprint.databinding.FragmentFixturesBinding
 import com.example.sprint.utils.Resource
 import com.naylalabs.scorely.adapters.FixturesParentAdapter
@@ -60,13 +60,13 @@ class FixturesFragment() :
 
     }
 
-    private fun onFixtureListFetched(fixtureList: ArrayList<ScoreModel>) {
+    private fun onFixtureListFetched(fixtureList: ArrayList<OddModel>) {
         val groupList = fixtureList.groupBy { it.sportTitle }
-        initRecyclerView(groupList as HashMap<String, List<ScoreModel>>)
+        initRecyclerView(groupList as HashMap<String, List<OddModel>>)
     }
 
 
-    private fun initRecyclerView(hashMap: HashMap<String, List<ScoreModel>>) {
+    private fun initRecyclerView(hashMap: HashMap<String, List<OddModel>>) {
         layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.fixtureRv.layoutManager = layoutManager
         if (::adapter.isInitialized) {

@@ -4,19 +4,21 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sprint.data.entities.OddModel
 import com.example.sprint.data.entities.ScoreModel
 import com.example.sprint.databinding.FixtureParentItemBinding
 
 class FixturesParentAdapter constructor(private val context: Context) : RecyclerView.Adapter<FixturesParentAdapter.FixturesViewHolder>() {
 
     private val items: ArrayList<String> = arrayListOf()
-    private var hashList: HashMap<String, List<ScoreModel>> = HashMap()
+    private var hashList: HashMap<String, List<OddModel>> = HashMap()
 
     private val viewPool = RecyclerView.RecycledViewPool()
 
-    fun setItems(hashMap: HashMap<String, List<ScoreModel>>) {
+    fun setItems(hashMap: HashMap<String, List<OddModel>>) {
         this.hashList.clear()
         this.hashList = hashMap
         this.items.clear()
@@ -45,6 +47,10 @@ class FixturesParentAdapter constructor(private val context: Context) : Recycler
 
             if (hashList[league] != null) {
                 binding.childRecyclerview.visibility = View.VISIBLE
+                binding.childRecyclerview.addItemDecoration(   DividerItemDecoration(
+                    context,
+                    DividerItemDecoration.VERTICAL
+                ))
                 val childLayoutManager = LinearLayoutManager(
                     binding.childRecyclerview.context,
                     RecyclerView.VERTICAL,

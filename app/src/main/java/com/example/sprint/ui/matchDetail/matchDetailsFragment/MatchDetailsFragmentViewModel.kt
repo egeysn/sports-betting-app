@@ -17,9 +17,9 @@ class MatchDetailsFragmentViewModel @Inject constructor(private val repository: 
     var page: Int = 0
     private var _date: MutableLiveData<String> = MutableLiveData()
 
-    fun fetchFixtures(): LiveData<Resource<ArrayList<ScoreModel>>> {
-        return repository.getScores("soccer_brazil_campeonato", 3)
-    }
+   /* fun fetchFixtures(): LiveData<Resource<ArrayList<ScoreModel>>> {
+      //  return repository.getScores("soccer_brazil_campeonato", 3)
+    }*/
 
 
 }

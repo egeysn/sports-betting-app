@@ -13,22 +13,24 @@
         android:background="@color/primary_light"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingVertical="4dp">
+        android:paddingVertical="2dp">
 
         <ImageView
             android:id="@+id/league_iv"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_marginStart="15dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:src="@drawable/ic_placeholder_liverpool" />
 
         <TextView
             android:id="@+id/league_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/roboto_400"
-            tools:text="Championship"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="16sp"
+            tools:text="Championship" />
 
     </LinearLayout>
 
@@ -37,6 +39,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/parent_ll"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
         android:orientation="vertical" />
 </RelativeLayout>

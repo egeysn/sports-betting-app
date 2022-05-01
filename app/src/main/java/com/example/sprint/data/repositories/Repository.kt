@@ -14,12 +14,26 @@ class Repository @Inject constructor(
     fun getCharacterDetail(id: Int) = performOperation { getResult { apiService.getCharacter(id) } }
 
 
+/*
     fun getScores(sport: String, daysFrom: Int) =
         performOperation {
             getResult {
                 apiService.getScores(
                     sport,
                     daysFrom,
+                    BuildConfig.API_KEY
+                )
+            }
+        }
+*/
+
+
+
+    fun getOdds( regions: String) =
+        performOperation {
+            getResult {
+                apiService.getOdds(
+                    regions,
                     BuildConfig.API_KEY
                 )
             }

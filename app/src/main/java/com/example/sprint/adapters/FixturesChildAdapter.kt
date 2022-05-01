@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.example.sprint.data.entities.OddModel
 import com.example.sprint.data.entities.ScoreModel
 import com.example.sprint.databinding.FixtureChildItemBinding
 import com.example.sprint.ui.matchDetail.MatchDetailActivity
@@ -14,7 +15,7 @@ import com.example.sprint.utils.Constants
 import com.example.sprint.utils.GeneralUtils
 import com.example.sprint.utils.toHour
 
-class FixturesChildAdapter(private val fixtures: List<ScoreModel>, private val context: Context) :
+class FixturesChildAdapter(private val fixtures: List<OddModel>, private val context: Context) :
     RecyclerView.Adapter<FixturesChildAdapter.FixturesChildViewHolder>() {
 
 
@@ -36,27 +37,27 @@ class FixturesChildAdapter(private val fixtures: List<ScoreModel>, private val c
     inner class FixturesChildViewHolder(val binding: FixtureChildItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ScoreModel) {
+        fun bind(item: OddModel) {
             binding.homeClubTv.text = item.homeTeam
             binding.awayClubTv.text = item.awayTeam
 
-            val position = adapterPosition
+       /*     val position = adapterPosition
             val params = binding.root.layoutParams as RecyclerView.LayoutParams
             if (position == fixtures.lastIndex) {
-                params.bottomMargin = GeneralUtils.getInstance(context).convertDpToPixel(16,itemView.context) //TODO General Utils inject edemedigim için burası kaldı tekrar çözüm yoluna bakılacak
+                params.bottomMargin = GeneralUtils.getInstance(context).convertDpToPixel(8,itemView.context)
                 binding.root.layoutParams = params
             } else {
                 params.bottomMargin = 0
                 binding.root.layoutParams = params
-            }
+            }*/
 
 
-            if(item.scores == null){
+        /*    if(item.scores == null){
                 binding.scoreTv.text = item.commenceTime?.toHour()
             }else{
                 binding.scoreTv.text = "${item.scores[0].score } - ${item.scores[1].score}"
 
-            }
+            }*/
 
             Glide.with(binding.root.context)
                 .load(Constants.HOME_TEAM_LOGO)

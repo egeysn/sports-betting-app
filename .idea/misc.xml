@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable-mdpi/ic_season.xml" value="0.3055" />
         <entry key="app/src/main/res/drawable-xxhdpi/ic_placeholder_liverpool.xml" value="0.298" />
         <entry key="app/src/main/res/drawable-xxhdpi/shape_team_away.xml" value="0.298" />
+        <entry key="app/src/main/res/drawable-xxhdpi/shape_team_home.xml" value="0.3055" />
         <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.3055" />
         <entry key="app/src/main/res/drawable/ic_nav_more.xml" value="0.298" />
         <entry key="app/src/main/res/drawable/ic_stadium.xml" value="0.3055" />

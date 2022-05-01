@@ -13,6 +13,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.sprint.R
 import com.example.sprint.adapters.pagerAdapters.MatchDetailPagerAdapter
 import com.example.sprint.common.BaseActivity
+import com.example.sprint.data.entities.OddModel
 import com.example.sprint.data.entities.ScoreModel
 import com.example.sprint.databinding.ActivityMatchDetailBinding
 import com.example.sprint.utils.Constants
@@ -25,13 +26,13 @@ class MatchDetailActivity : BaseActivity() {
     lateinit var binding: ActivityMatchDetailBinding
     private val viewModel: MatchDetailActivityViewModel by viewModels()
     private lateinit var pagerAdapter: MatchDetailPagerAdapter
-    private lateinit var scoreModel: ScoreModel
+    private lateinit var scoreModel: OddModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMatchDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        scoreModel = intent.getParcelableExtra<ScoreModel>(MATCH_DETAIL_DATA)!!
+        scoreModel = intent.getParcelableExtra<OddModel>(MATCH_DETAIL_DATA)!!
         initViewPager()
         adjustUI()
         listeners()
@@ -88,7 +89,7 @@ class MatchDetailActivity : BaseActivity() {
             homeClubTv.text = scoreModel.homeTeam
             awayClubTv.text = scoreModel.awayTeam
 
-            if (!scoreModel.scores.isNullOrEmpty()) {
+          /*  if (!scoreModel.scores.isNullOrEmpty()) {
                 homeScoreTv.text = scoreModel.scores!![0].score
                 awayScoreTv.text = scoreModel.scores!![1].score
             }
@@ -98,7 +99,7 @@ class MatchDetailActivity : BaseActivity() {
                 matchStatusTv.text = "Finished"
             } else {
                 matchStatusTv.text = "Not Started"
-            }
+            }*/
 
             Glide.with(binding.root.context)
                 .load(Constants.HOME_TEAM_LOGO)
@@ -126,7 +127,7 @@ class MatchDetailActivity : BaseActivity() {
 
     companion object {
         var MATCH_DETAIL_DATA = "MATCH_DETAIL"
-        fun createSimpleIntent(context: Context?, item: ScoreModel): Intent {
+        fun createSimpleIntent(context: Context?, item: OddModel): Intent {
             return Intent(context, MatchDetailActivity::class.java).putExtra(
                 MATCH_DETAIL_DATA,
                 item

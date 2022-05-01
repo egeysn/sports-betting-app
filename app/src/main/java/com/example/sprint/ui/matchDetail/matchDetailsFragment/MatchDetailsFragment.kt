@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sprint.common.BaseFragment
+import com.example.sprint.data.entities.OddModel
 import com.example.sprint.data.entities.ScoreModel
 import com.example.sprint.databinding.FragmentMatchDetailBinding
-import com.example.sprint.databinding.FragmentMatchOddsBinding
 import com.naylalabs.scorely.adapters.FixturesParentAdapter
 
-class MatchDetailsFragment(val matchDetail: ScoreModel?) :
+class MatchDetailsFragment(val matchDetail: OddModel?) :
     BaseFragment() {
 
     private lateinit var binding: FragmentMatchDetailBinding
