@@ -36,6 +36,9 @@ class MatchDetailsFragment(val matchDetail: ScoreModel?) :
     }
 
     private fun adjustUI() {
+        binding.apply {
+            calendarTv.text = matchDetail?.commenceTime
+        }
 
     }
 

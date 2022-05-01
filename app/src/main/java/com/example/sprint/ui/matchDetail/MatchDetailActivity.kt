@@ -25,7 +25,6 @@ class MatchDetailActivity : BaseActivity() {
     lateinit var binding: ActivityMatchDetailBinding
     private val viewModel: MatchDetailActivityViewModel by viewModels()
     private lateinit var pagerAdapter: MatchDetailPagerAdapter
-    private lateinit var viewPager: ViewPager2
     private lateinit var scoreModel: ScoreModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

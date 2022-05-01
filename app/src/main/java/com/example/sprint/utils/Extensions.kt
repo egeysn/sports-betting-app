@@ -24,3 +24,16 @@ fun String.toHour(): String {
     }
     return ""
 }
+
+fun String.toDetailCardDate(): String {
+    if (!TextUtils.isEmpty(this)) {
+        val dt = DateTime(this, DateTimeZone.getDefault())
+        return try {
+            dt.toString("h:mm , EEE")
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return ""
+        }
+    }
+    return ""
+}

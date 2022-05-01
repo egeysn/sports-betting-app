@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/gray3">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/top_toolbar"
@@ -18,7 +17,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="15dp"
             android:background="?selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
@@ -28,206 +27,188 @@
     </RelativeLayout>
 
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scroll_view"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/write_comment_tv"
         android:layout_below="@id/top_toolbar"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/match_graph_rl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="210dp"
+            android:background="@drawable/shape_match_graph">
 
-            <RelativeLayout
-                android:id="@+id/match_graph_rl"
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
-                android:background="@drawable/shape_match_graph">
+                android:background="@drawable/shape_match_grap_dark" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="210dp"
-                    android:background="@drawable/shape_match_grap_dark" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/match_status_cv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:visibility="visible"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="@color/primary_dark"
+                app:strokeWidth="1dp">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/match_status_cv"
+                <TextView
+                    android:id="@+id/match_status_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="12dp"
-                    android:visibility="visible"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="@color/primary_dark"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="12dp">
-
-                    <TextView
-                        android:id="@+id/match_status_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/roboto_400"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="2dp"
-                        tools:text="Not started"
-                        android:textAlignment="center"
-                        android:textColor="@color/primary_light"
-                        android:textSize="12sp" />
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/roboto_400"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/primary_light"
+                    android:textSize="12sp"
+                    tools:text="Not started" />
 
 
-                </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.card.MaterialCardView>
 
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="20dp"
+                android:layout_toStartOf="@id/score_ll">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:id="@+id/home_club_rl"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_centerInParent="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_toStartOf="@id/score_ll">
+                    android:background="@drawable/shape_team_home">
 
-                    <RelativeLayout
-                        android:id="@+id/home_club_rl"
+                    <ImageView
+                        android:id="@+id/home_club_iv"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/shape_team_home">
-
-                        <ImageView
-                            android:id="@+id/home_club_iv"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_centerVertical="true"
-                            tools:src="@drawable/ic_placeholder_liverpool" />
-
-                    </RelativeLayout>
-
-                    <TextView
-                        android:id="@+id/home_club_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/home_club_rl"
-                        android:layout_marginTop="14dp"
-                        android:fontFamily="@font/roboto_700"
-                        android:lineSpacingExtra="4dp"
-                        android:maxLines="2"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="17sp"
-                        tools:text="Arsenal Tula tula tula tula tula tula tula tula tula" />
+                        android:layout_centerVertical="true"
+                        tools:src="@drawable/ic_placeholder_liverpool" />
 
                 </RelativeLayout>
 
-
-                <LinearLayout
-                    android:id="@+id/score_ll"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="visible">
-
-                    <TextView
-                        android:id="@+id/home_score_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_700"
-                        tools:text="123"
-                        android:maxLines="1"
-                        android:text=" "
-                        android:textColor="@color/white"
-                        android:textSize="21sp" />
-
-                    <TextView
-
-                        android:id="@+id/away_score_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:maxLines="1"
-                        android:fontFamily="@font/roboto_700"
-                        tools:text="123"
-                        android:text=" "
-                        android:textColor="@color/white"
-                        android:textSize="21sp" />
-                </LinearLayout>
-
-
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/home_club_tv"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:layout_toEndOf="@id/score_ll">
-
-                    <RelativeLayout
-                        android:id="@+id/away_club_rl"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/shape_team_away">
-
-                        <ImageView
-                            android:id="@+id/away_club_iv"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_centerInParent="true"
-                            tools:src="@drawable/ic_placeholder_liverpool" />
-
-                    </RelativeLayout>
-
-                    <TextView
-                        android:id="@+id/away_club_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/away_club_rl"
-                        android:layout_marginTop="14dp"
-                        android:fontFamily="@font/roboto_700"
-                        android:lineSpacingExtra="4dp"
-                        android:maxLines="2"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="17sp"
-                        tools:text="Liverpooasdadasasdl" />
-                </RelativeLayout>
-
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_club_rl"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/roboto_700"
+                    android:lineSpacingExtra="4dp"
+                    android:maxLines="2"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    tools:text="Arsenal Tula tula tula tula tula tula tula tula tula" />
 
             </RelativeLayout>
 
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/score_ll"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible">
 
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_layout"
-                    android:layoutDirection="locale"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/home_score_tv"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:tabIndicatorHeight="4dp"
-                    app:tabBackground="@color/primary"
-                    app:tabSelectedTextColor="@color/white"
-                    app:tabTextColor="@color/white">
+                    android:fontFamily="@font/roboto_700"
+                    android:maxLines="1"
+                    android:text=" "
+                    android:textColor="@color/white"
+                    android:textSize="21sp"
+                    tools:text="123" />
 
-                </com.google.android.material.tabs.TabLayout>
+                <TextView
 
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewPager"
-                    android:layoutDirection="locale"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                </androidx.viewpager2.widget.ViewPager2>
-
+                    android:id="@+id/away_score_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/roboto_700"
+                    android:maxLines="1"
+                    android:text=" "
+                    android:textColor="@color/white"
+                    android:textSize="21sp"
+                    tools:text="123" />
             </LinearLayout>
 
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_toEndOf="@id/score_ll">
 
-        </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/away_club_rl"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/shape_team_away">
 
-    </androidx.core.widget.NestedScrollView>
+                    <ImageView
+                        android:id="@+id/away_club_iv"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerInParent="true"
+                        tools:src="@drawable/ic_placeholder_liverpool" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/away_club_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/away_club_rl"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/roboto_700"
+                    android:lineSpacingExtra="4dp"
+                    android:maxLines="2"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    tools:text="Liverpooasdadasasdl" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="locale"
+            app:tabBackground="@color/primary"
+            app:tabIndicatorHeight="4dp"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/white">
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="locale">
+
+        </androidx.viewpager2.widget.ViewPager2>
+
+
+    </LinearLayout>
 
 </RelativeLayout>
