@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.sprint.data.entities.ScoreModel
 import com.example.sprint.databinding.FixtureChildItemBinding
+import com.example.sprint.ui.matchDetail.MatchDetailActivity
 import com.example.sprint.utils.Constants
 import com.example.sprint.utils.GeneralUtils
 import com.example.sprint.utils.toHour
@@ -35,9 +36,9 @@ class FixturesChildAdapter(private val fixtures: List<ScoreModel>, private val c
     inner class FixturesChildViewHolder(val binding: FixtureChildItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(fixture: ScoreModel) {
-            binding.homeClubTv.text = fixture.homeTeam
-            binding.awayClubTv.text = fixture.awayTeam
+        fun bind(item: ScoreModel) {
+            binding.homeClubTv.text = item.homeTeam
+            binding.awayClubTv.text = item.awayTeam
 
             val position = adapterPosition
             val params = binding.root.layoutParams as RecyclerView.LayoutParams
@@ -50,10 +51,10 @@ class FixturesChildAdapter(private val fixtures: List<ScoreModel>, private val c
             }
 
 
-            if(fixture.scores == null){
-                binding.scoreTv.text = fixture.commenceTime?.toHour()
+            if(item.scores == null){
+                binding.scoreTv.text = item.commenceTime?.toHour()
             }else{
-                binding.scoreTv.text = "${fixture.scores[0].score } - ${fixture.scores[1].score}"
+                binding.scoreTv.text = "${item.scores[0].score } - ${item.scores[1].score}"
 
             }
 
@@ -68,7 +69,7 @@ class FixturesChildAdapter(private val fixtures: List<ScoreModel>, private val c
                 .into(binding.awayClubIv)
 
             binding.root.setOnClickListener {
-
+               context.startActivity(MatchDetailActivity.createSimpleIntent(context,item))
 
 
             }

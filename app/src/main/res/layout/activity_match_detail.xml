@@ -59,6 +59,9 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="12dp"
                     android:visibility="visible"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/primary_dark"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="12dp">
 
                     <TextView
@@ -132,7 +135,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_700"
-                        tools:text="1"
+                        tools:text="123"
+                        android:text=" "
                         android:textColor="@color/white"
                         android:textSize="24sp" />
 
@@ -143,7 +147,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:fontFamily="@font/roboto_700"
-                        tools:text="1"
+                        tools:text="123"
+                        android:text=" "
                         android:textColor="@color/white"
                         android:textSize="24sp" />
                 </LinearLayout>
@@ -201,8 +206,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:tabIndicatorHeight="4dp"
-                    app:tabBackground="@color/primary_dark"
-                    app:tabSelectedTextColor="@color/primary_light"
+                    app:tabBackground="@color/primary_light"
+                    app:tabSelectedTextColor="@color/white"
                     app:tabTextColor="@color/white">
 
                 </com.google.android.material.tabs.TabLayout>
