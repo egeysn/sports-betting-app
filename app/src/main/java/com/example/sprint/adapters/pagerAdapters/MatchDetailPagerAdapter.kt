@@ -17,7 +17,7 @@ class MatchDetailPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> MatchOddsFragment()
+            0 -> MatchOddsFragment(matchDetail)
             else -> MatchDetailsFragment(matchDetail)
         }
     }
