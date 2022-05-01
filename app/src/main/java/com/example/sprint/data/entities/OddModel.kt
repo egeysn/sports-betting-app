@@ -8,24 +8,24 @@ import kotlinx.android.parcel.Parcelize
 data class OddModel(
 
 	@field:SerializedName("bookmakers")
-	val bookmakers: List<BookmakersItem?>? = null,
+	val bookmakers: List<BookmakersItem?>? ,
 
 	@field:SerializedName("sport_key")
-	val sportKey: String? = null,
+	val sportKey: String?,
 
 	@field:SerializedName("id")
-	val id: String? = null,
+	val id: String? ,
 
 	@field:SerializedName("home_team")
-	val homeTeam: String? = null,
+	val homeTeam: String? ,
 
 	@field:SerializedName("sport_title")
-	val sportTitle: String? = null,
+	val sportTitle: String?,
 
 	@field:SerializedName("commence_time")
-	val commenceTime: String? = null,
+	val commenceTime: String? ,
 
 	@field:SerializedName("away_team")
-	val awayTeam: String? = null
+	val awayTeam: String?
 ) : Parcelable
 
