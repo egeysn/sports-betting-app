@@ -62,6 +62,7 @@ class MatchDetailActivity : BaseActivity() {
         pagerAdapter = MatchDetailPagerAdapter(this)
         pagerAdapter.setScoreModel(scoreModel)
         binding.viewPager.apply {
+            isUserInputEnabled = false
             offscreenPageLimit = 2
             adapter = pagerAdapter
         }

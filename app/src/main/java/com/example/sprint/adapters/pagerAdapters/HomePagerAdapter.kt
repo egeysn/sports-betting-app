@@ -12,7 +12,7 @@ class HomePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> FixturesFragment()
-            1 -> FixturesFragment()
+            1 -> AuthFragment()
             else -> AuthFragment()
         }
     }

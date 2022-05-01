@@ -10,6 +10,7 @@ import com.example.sprint.BuildConfig
 import com.example.sprint.services.RemoteConfigService
 import com.example.sprint.utils.AnalyticsHelper
 import com.example.sprint.utils.NetworkUtils
+import com.example.sprint.utils.OddUtilHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -123,5 +124,9 @@ object AppModule {
     @Singleton
     @Provides
     fun provideAnalyticsHelper(): AnalyticsHelper = AnalyticsHelper.getInstance()
+
+    @Singleton
+    @Provides
+    fun provideOddUtilHelper(): OddUtilHelper = OddUtilHelper.getInstance()
 
 }
