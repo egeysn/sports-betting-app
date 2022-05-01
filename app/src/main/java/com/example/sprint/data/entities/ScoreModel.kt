@@ -5,30 +5,30 @@ import com.google.gson.annotations.SerializedName
 data class ScoreModel(
 
 	@field:SerializedName("scores")
-	val scores: List<ScoreItem>,
+	val scores: List<ScoreItem>?,
 
 	@field:SerializedName("last_update")
-	val lastUpdate: String,
+	val lastUpdate: String?,
 
 	@field:SerializedName("sport_key")
-	val sportKey: String,
+	val sportKey: String?,
 
 	@field:SerializedName("id")
-	val id: String,
+	val id: String?,
 
 	@field:SerializedName("completed")
-	val completed: Boolean,
+	val completed: Boolean?,
 
 	@field:SerializedName("home_team")
-	val homeTeam: String,
+	val homeTeam: String?,
 
 	@field:SerializedName("sport_title")
-	val sportTitle: String,
+	val sportTitle: String?,
 
 	@field:SerializedName("commence_time")
-	val commenceTime: String,
+	val commenceTime: String?,
 
 	@field:SerializedName("away_team")
-	val awayTeam: String
+	val awayTeam: String?
 )
 

@@ -62,7 +62,7 @@ class FixturesFragment() :
 
     private fun onFixtureListFetched(fixtureList: ArrayList<ScoreModel>) {
         val groupList = fixtureList.groupBy { it.sportTitle }
-        initRecyclerView(groupList as HashMap)
+        initRecyclerView(groupList as HashMap<String, List<ScoreModel>>)
     }
 
 
@@ -79,15 +79,4 @@ class FixturesFragment() :
 
     }
 
-    /*  */
-    /**
-    Maç tarihi değiştiğinde fixtureList sıfırlanacak ve yeni tarihe göre apiden istek yapılacak
-     *//*
-     fun onClickedDate(date: DateTime) {
-        viewModel.page = 0
-        myFixturesList.clear()
-        rvMyFixtures.scrollToPosition(0)
-        val date = formatter?.print(date)
-        date?.let { viewModel.setDate(it) }
-    }*/
 }

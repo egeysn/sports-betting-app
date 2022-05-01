@@ -51,7 +51,7 @@ class FixturesChildAdapter(private val fixtures: List<ScoreModel>, private val c
 
 
             if(fixture.scores == null){
-                binding.scoreTv.text = fixture.commenceTime.toHour()
+                binding.scoreTv.text = fixture.commenceTime?.toHour()
             }else{
                 binding.scoreTv.text = "${fixture.scores[0].score } - ${fixture.scores[1].score}"
 
@@ -69,15 +69,6 @@ class FixturesChildAdapter(private val fixtures: List<ScoreModel>, private val c
 
             binding.root.setOnClickListener {
 
-           /*     when (type) {
-                    MatchDetailActivity.TYPE -> itemView.context.startActivity(MatchDetailActivity.createSimpleIntent(itemView.context, fixture))
-
-                    AddMatchActivity.TYPE ->{
-                        oddUtilHelper.setViewType(VIEW_TYPE.EDITABLE)
-                        itemView.context.startActivity(fixture._id.let { id -> MatchOddsActivity.createSimpleIntent(itemView.context, id) })
-
-                    }
-                }*/
 
 
             }
