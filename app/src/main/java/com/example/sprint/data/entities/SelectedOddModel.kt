@@ -1,6 +1,5 @@
 package com.example.sprint.data.entities
 
-import com.google.gson.annotations.SerializedName
 
 data class SelectedOddModel(
 
@@ -16,6 +15,6 @@ data class SelectedOddModel(
 
     val commenceTime: String? ,
 
-    val awayTeam: String? 
+    val awayTeam: String?
 )
 
