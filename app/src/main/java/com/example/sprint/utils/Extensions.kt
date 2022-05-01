@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.widget.Toast
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
+import timber.log.Timber
 
 
 fun Context.toast(message: CharSequence) =
@@ -12,7 +13,7 @@ fun Context.toast(message: CharSequence) =
 
 fun String.toHour(): String {
     if (!TextUtils.isEmpty(this)) {
-        val dt = DateTime(DateTimeZone.getDefault())
+        val dt = DateTime(this,DateTimeZone.getDefault())
         return try {
             dt.toDateTime()
             return dt.toString("HH:mm")

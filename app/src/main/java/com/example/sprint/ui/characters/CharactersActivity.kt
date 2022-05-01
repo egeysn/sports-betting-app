@@ -18,7 +18,7 @@ import com.example.sprint.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class CharactersActivity : BaseActivity() {
 
     private val viewModel: CharactersViewModel by viewModels()

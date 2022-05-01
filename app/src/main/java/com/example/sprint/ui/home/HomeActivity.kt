@@ -3,10 +3,12 @@ package com.example.sprint.ui.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sprint.adapters.pagerAdapters.HomePagerAdapter
 import com.example.sprint.common.BaseActivity
 import com.example.sprint.databinding.ActivityHomeBinding
+import com.example.sprint.ui.characters.CharactersViewModel
 import com.example.sprint.utils.views.NavigationBar
 
 class HomeActivity : BaseActivity(), NavigationBar.NavigationBarListener {
@@ -14,6 +16,7 @@ class HomeActivity : BaseActivity(), NavigationBar.NavigationBarListener {
     private lateinit var pagerAdapter: HomePagerAdapter
     private lateinit var viewPager: ViewPager2
     lateinit var binding: ActivityHomeBinding
+    private val viewModel: HomeActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
