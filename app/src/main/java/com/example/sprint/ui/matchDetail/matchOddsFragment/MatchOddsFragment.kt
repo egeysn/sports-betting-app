@@ -6,18 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.sprint.common.BaseFragment
+import com.example.sprint.data.entities.MarketsItem
 import com.example.sprint.data.entities.OddModel
 import com.example.sprint.databinding.FragmentMatchOddsBinding
-import com.naylalabs.scorely.adapters.FixturesParentAdapter
+import com.naylalabs.scorely.adapters.OddsChildAdapter
+import com.naylalabs.scorely.adapters.OddsParentAdapter
 
-class MatchOddsFragment(val matchDetail: OddModel?) :
+class MatchOddsFragment(val oddModel: OddModel?) :
     BaseFragment() {
 
     private lateinit var binding: FragmentMatchOddsBinding
     private val viewModel: MatchOddsFragmentViewModel by activityViewModels()
 
-    private lateinit var adapter: FixturesParentAdapter
+    private lateinit var adapter: OddsParentAdapter
     lateinit var layoutManager: LinearLayoutManager
 
 
@@ -28,54 +31,27 @@ class MatchOddsFragment(val matchDetail: OddModel?) :
     ): View {
         binding = FragmentMatchOddsBinding.inflate(inflater, container, false)
 
-
-        setupObservers()
+        initOddsRecyclerView()
         return binding.root
     }
 
-
-    private fun setupObservers() {
-    /*    viewModel.fetchFixtures().observe(viewLifecycleOwner) {
-            when (it.status) {
-                Resource.Status.SUCCESS -> {
-                    val fixtureList = it.data
-                    if (!fixtureList.isNullOrEmpty()) {
-                        onFixtureListFetched(fixtureList)
-                    } else {
-                        binding.emptyList.visibility = View.VISIBLE
+    private fun initOddsRecyclerView() {
+        binding.oddsRv.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+        if (!oddModel?.bookmakers.isNullOrEmpty()) {
+            adapter = OddsParentAdapter(requireContext(),
+                oddModel?.bookmakers?.get(0)?.markets as ArrayList<MarketsItem>,
+                object : OddsChildAdapter.OddItemListener {
+                    override fun onOddItemSelected() {
+                        TODO("Not yet implemented")
                     }
-                    hideLoading()
-                }
-                Resource.Status.ERROR -> {
-                    binding.emptyList.visibility = View.VISIBLE
-                    hideLoading()
-                }
-                Resource.Status.LOADING -> {
-                    showLoading()
-                }
-            }
-        }*/
 
-    }
+                })
+            binding.oddsRv.adapter = adapter
 
-
-/*
-    private fun onFixtureListFetched(fixtureList: ArrayList<ScoreModel>) {
-        val groupList = fixtureList.groupBy { it.sportTitle }
-        initRecyclerView(groupList as HashMap<String, List<ScoreModel>>)
-    }
-
-    private fun initRecyclerView(hashMap: HashMap<String, List<ScoreModel>>) {
-        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        binding.fixtureRv.layoutManager = layoutManager
-        if (::adapter.isInitialized) {
-            adapter.setItems(hashMap)
         } else {
-            adapter = FixturesParentAdapter(requireContext())
-            binding.fixtureRv.adapter = adapter
-            adapter.setItems(hashMap)
+            //show error widget
         }
+    }
 
-    }*/
 
 }

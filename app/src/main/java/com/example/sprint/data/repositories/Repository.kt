@@ -29,11 +29,12 @@ class Repository @Inject constructor(
 
 
 
-    fun getOdds( regions: String) =
+    fun getOdds( regions: String, markets : String) =
         performOperation {
             getResult {
                 apiService.getOdds(
                     regions,
+                    markets,
                     BuildConfig.API_KEY
                 )
             }

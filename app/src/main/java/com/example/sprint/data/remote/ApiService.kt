@@ -28,6 +28,7 @@ interface ApiService {
     @GET("sports/upcoming/odds")
     suspend fun getOdds(
         @Query("regions") regions: String,
+        @Query("markets") markets: String,
         @Query("apiKey") apiKey: String,
     ): Response<ArrayList<OddModel>>
 

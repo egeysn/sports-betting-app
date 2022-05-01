@@ -26,6 +26,8 @@
         <entry key="app/src/main/res/layout/fragment_match_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_match_odds.xml" value="0.3338541666666667" />
         <entry key="app/src/main/res/layout/ic_chevron_left.xml" value="0.3338541666666667" />
+        <entry key="app/src/main/res/layout/item_match_odd_child.xml" value="0.3338541666666667" />
+        <entry key="app/src/main/res/layout/item_match_odd_parent.xml" value="0.3338541666666667" />
         <entry key="app/src/main/res/layout/navigation_bar.xml" value="0.33" />
         <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.22" />
       </map>

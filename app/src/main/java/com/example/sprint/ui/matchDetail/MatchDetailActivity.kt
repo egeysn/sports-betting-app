@@ -7,14 +7,12 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
-import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.sprint.R
 import com.example.sprint.adapters.pagerAdapters.MatchDetailPagerAdapter
 import com.example.sprint.common.BaseActivity
 import com.example.sprint.data.entities.OddModel
-import com.example.sprint.data.entities.ScoreModel
 import com.example.sprint.databinding.ActivityMatchDetailBinding
 import com.example.sprint.utils.Constants
 import com.google.android.material.tabs.TabLayout

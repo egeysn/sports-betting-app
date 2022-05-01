@@ -19,7 +19,7 @@ class FixturesViewModel @Inject constructor(private val repository: Repository) 
     private var _date: MutableLiveData<String> = MutableLiveData()
 
     fun fetchFixtures(): LiveData<Resource<ArrayList<OddModel>>> {
-        return repository.getOdds("eu")
+        return repository.getOdds("eu","h2h,spreads,totals")
     }
 
 

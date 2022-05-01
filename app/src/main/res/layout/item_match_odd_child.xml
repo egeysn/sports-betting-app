@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tool="http://schemas.android.com/tools"
     android:layout_marginHorizontal="4dp"
     android:gravity="center"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/parent_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
         android:fontFamily="@font/roboto_400"
         android:lineSpacingExtra="4dp"
-        tool:text="Home"
-        android:textColor="@color/black"
-        android:textSize="12sp" />
+        android:maxLines="2"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        tool:text="Home" />
 
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/odds_container"
-        android:layout_width="58dp"
-        android:layout_height="32dp"
+        android:layout_width="52dp"
+        android:layout_height="28dp"
         android:layout_marginTop="2dp"
+        android:background="?selectableItemBackground"
         app:cardBackgroundColor="@color/odd_background_gray"
         app:cardCornerRadius="8dp">
 
@@ -35,9 +39,9 @@
             android:fontFamily="@font/roboto_700"
             android:gravity="center"
             android:lineSpacingExtra="4dp"
-            tool:text="1.91"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            tool:text="1.91" />
 
     </com.google.android.material.card.MaterialCardView>
 
