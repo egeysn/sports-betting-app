@@ -17,12 +17,12 @@
             android:id="@+id/back_iv"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginHorizontal="10dp"
             android:layout_centerVertical="true"
+            android:layout_marginHorizontal="10dp"
             android:background="?selectableItemBackgroundBorderless"
-            android:scaleType="centerCrop"
             android:clickable="true"
             android:focusable="true"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_back" />
 
     </RelativeLayout>
@@ -123,7 +123,7 @@
 
                 <LinearLayout
                     android:id="@+id/score_ll"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center"
@@ -136,9 +136,10 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_700"
                         tools:text="123"
+                        android:maxLines="1"
                         android:text=" "
                         android:textColor="@color/white"
-                        android:textSize="24sp" />
+                        android:textSize="21sp" />
 
                     <TextView
 
@@ -146,11 +147,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
+                        android:maxLines="1"
                         android:fontFamily="@font/roboto_700"
                         tools:text="123"
                         android:text=" "
                         android:textColor="@color/white"
-                        android:textSize="24sp" />
+                        android:textSize="21sp" />
                 </LinearLayout>
 
 
@@ -206,7 +208,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:tabIndicatorHeight="4dp"
-                    app:tabBackground="@color/primary_light"
+                    app:tabBackground="@color/primary"
                     app:tabSelectedTextColor="@color/white"
                     app:tabTextColor="@color/white">
 
