@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CouponFragment constructor() :
+class CouponFragment () :
     BaseFragment() {
 
     @Inject
@@ -39,8 +39,6 @@ class CouponFragment constructor() :
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCouponBinding.inflate(inflater, container, false)
-
-
         setupObservers()
         return binding.root
     }

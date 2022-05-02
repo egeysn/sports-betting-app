@@ -17,7 +17,6 @@
 
 
         <RelativeLayout
-            android:id="@+id/root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -226,7 +225,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/odds_container"
+                android:id="@+id/bet_name_container"
                 android:layout_marginHorizontal="10dp"
                 android:layout_width="52dp"
                 android:layout_height="28dp"
@@ -236,7 +235,7 @@
                 app:cardCornerRadius="8dp">
 
                 <TextView
-                    android:id="@+id/odd_tv"
+                    android:id="@+id/bet_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

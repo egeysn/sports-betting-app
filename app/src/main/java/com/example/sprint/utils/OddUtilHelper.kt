@@ -3,11 +3,12 @@ package com.example.sprint.utils
 import androidx.lifecycle.MutableLiveData
 import com.example.sprint.data.entities.SelectedOddModel
 import timber.log.Timber
+import java.util.function.Predicate
 
 
 class OddUtilHelper {
 
-     val selectedOdds: MutableLiveData<ArrayList<SelectedOddModel>> = MutableLiveData()
+    val selectedOdds: MutableLiveData<ArrayList<SelectedOddModel>> = MutableLiveData()
 
 
     fun addSelectedOdd(model: SelectedOddModel) {
@@ -19,12 +20,23 @@ class OddUtilHelper {
         selectedOdds.postValue(list)
     }
 
-    fun isHaveSelectedOdd(key: String,betId : String): Boolean {
+    fun removeSelectedOdd(id: String) {
+        val list = selectedOdds.value
+        if (!list.isNullOrEmpty()) {
+            for (item in list) {
+                if (item.id == id) {
+                    list.remove(item)
+                }
+            }
+        }
+    }
+
+    fun isHaveSelectedOdd(betId: String): Boolean {
         val list = selectedOdds.value
         return if (list.isNullOrEmpty()) {
             false
         } else {
-            val findOdd = list.find { it.marketId == key && it.outCome?.betId == betId }
+            val findOdd = list.find { it.outCome?.betId == betId }
             Timber.d("isHaveSelectedOdd : $findOdd")
             findOdd != null
         }

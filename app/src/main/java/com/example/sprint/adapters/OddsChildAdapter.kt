@@ -13,7 +13,7 @@ import com.example.sprint.utils.OddUtilHelper
 
 
 class OddsChildAdapter(
-    private val bet: MarketsItem,
+    private val market: MarketsItem,
     private var itemListener: OddsChildAdapter.OddItemListener
 ) :
     RecyclerView.Adapter<OddsChildAdapter.MyViewHolder>() {
@@ -34,12 +34,12 @@ class OddsChildAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val values = bet.outcomes
+        val values = market.outcomes
 
         values?.get(position)?.let { holder.bind(it, itemListener) }
     }
 
-    override fun getItemCount(): Int = bet.outcomes?.size!!
+    override fun getItemCount(): Int = market.outcomes?.size!!
 
     inner class MyViewHolder(val binding: ItemMatchOddChildBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -53,14 +53,7 @@ class OddsChildAdapter(
                 parentTv.text = outcomesItem.name
                 oddTv.text = outcomesItem.price.toString()
 
-                if (bet.key?.let {
-                        outcomesItem.betId?.let { it1 ->
-                            oddUtilHelper.isHaveSelectedOdd(
-                                it,
-                                it1
-                            )
-                        }
-                    } == true) {
+                if (outcomesItem.betId?.let { oddUtilHelper.isHaveSelectedOdd( betId = it) } == true) {
                     binding.oddsContainer.setCardBackgroundColor(
                         ContextCompat.getColor(
                             binding.root.context,
@@ -78,8 +71,7 @@ class OddsChildAdapter(
 
 
                 root.setOnClickListener {
-
-
+                    itemListener.onOddItemSelected(outcomesItem)
 
                 }
             }

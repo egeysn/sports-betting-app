@@ -53,18 +53,23 @@ class MatchOddsFragment(val oddModel: OddModel?) :
                 oddModel?.bookmakers?.get(0)?.markets as ArrayList<MarketsItem>,
                 object : OddParentListener {
                     override fun onOddItemSelected(outCome: OutcomesItem, marketsItem: MarketsItem) {
-                        oddUtilHelper.addSelectedOdd(
-                            SelectedOddModel(
-                                outCome  = outCome,
-                                sportKey = this@MatchOddsFragment.oddModel.sportKey,
-                                id = this@MatchOddsFragment.oddModel.id,
-                                homeTeam = this@MatchOddsFragment.oddModel.homeTeam,
-                                sportTitle = this@MatchOddsFragment.oddModel.sportTitle,
-                                commenceTime = this@MatchOddsFragment.oddModel.commenceTime,
-                                awayTeam = this@MatchOddsFragment.oddModel.awayTeam,
-                                marketId = marketsItem.key
+                        if(outCome.betId?.let { oddUtilHelper.isHaveSelectedOdd(it) } == true){
+                            oddModel.id?.let { oddUtilHelper.removeSelectedOdd(it) }
+                        }else{
+                            oddUtilHelper.addSelectedOdd(
+                                SelectedOddModel(
+                                    outCome  = outCome,
+                                    sportKey = this@MatchOddsFragment.oddModel.sportKey,
+                                    id = this@MatchOddsFragment.oddModel.id,
+                                    homeTeam = this@MatchOddsFragment.oddModel.homeTeam,
+                                    sportTitle = this@MatchOddsFragment.oddModel.sportTitle,
+                                    commenceTime = this@MatchOddsFragment.oddModel.commenceTime,
+                                    awayTeam = this@MatchOddsFragment.oddModel.awayTeam,
+                                    marketId = marketsItem.key
+                                )
                             )
-                        )
+                        }
+
                         adapter.notifyDataSetChanged()
                     }
 

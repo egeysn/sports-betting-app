@@ -37,11 +37,10 @@ class CouponsChildAdapter(val context: Context, private val items: ArrayList<Sel
 
     override fun getItemCount() = items.size
 
-    inner class CouponsChildViewHolder(private val binding: CouponMatchItemBinding) :
+    inner class CouponsChildViewHolder( val binding: CouponMatchItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: SelectedOddModel) {
-
 
             Glide.with(binding.root.context)
                 .load(Constants.HOME_TEAM_LOGO)
