@@ -7,7 +7,7 @@ import timber.log.Timber
 
 class OddUtilHelper {
 
-    private val selectedOdds: MutableLiveData<ArrayList<SelectedOddModel>> = MutableLiveData()
+     val selectedOdds: MutableLiveData<ArrayList<SelectedOddModel>> = MutableLiveData()
 
 
     fun addSelectedOdd(model: SelectedOddModel) {

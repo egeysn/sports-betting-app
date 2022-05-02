@@ -3,6 +3,7 @@ package com.example.sprint.adapters.pagerAdapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.sprint.ui.home.couponFragment.CouponFragment
 import com.naylalabs.scorely.ui.main.home.fixturesFragment.FixturesFragment
 import com.naylalabs.scorely.ui.main.home.moreFragment.AuthFragment
 
@@ -12,7 +13,7 @@ class HomePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> FixturesFragment()
-            1 -> AuthFragment()
+            1 -> CouponFragment()
             else -> AuthFragment()
         }
     }
