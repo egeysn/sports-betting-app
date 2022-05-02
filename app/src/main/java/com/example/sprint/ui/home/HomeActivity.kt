@@ -8,7 +8,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.sprint.adapters.pagerAdapters.HomePagerAdapter
 import com.example.sprint.common.BaseActivity
 import com.example.sprint.databinding.ActivityHomeBinding
-import com.example.sprint.ui.characters.CharactersViewModel
 import com.example.sprint.utils.views.NavigationBar
 
 class HomeActivity : BaseActivity(), NavigationBar.NavigationBarListener {
@@ -25,6 +24,8 @@ class HomeActivity : BaseActivity(), NavigationBar.NavigationBarListener {
 
         adjustUI()
     }
+
+
 
     private fun adjustUI() {
         viewPager = binding.viewPager

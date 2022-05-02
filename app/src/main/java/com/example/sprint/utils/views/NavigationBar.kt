@@ -9,10 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LifecycleOwner
 import com.example.sprint.R
 import com.example.sprint.databinding.NavigationBarBinding
+import com.example.sprint.utils.OddUtilHelper
+import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class NavigationBar : LinearLayout, View.OnClickListener {
+
+    @Inject
+    lateinit var oddUtilHelper: OddUtilHelper
 
     var binding: NavigationBarBinding =
         NavigationBarBinding.inflate(LayoutInflater.from(context), this, true)
@@ -22,6 +31,18 @@ class NavigationBar : LinearLayout, View.OnClickListener {
 
     init {
         listeners()
+        setupObservers()
+    }
+
+    private fun setupObservers() {
+        oddUtilHelper.selectedOdds.observe(context as LifecycleOwner) {
+            if (it != null && it.isNotEmpty()) {
+                binding.basketTv.text = "${it.size}"
+                Timber.d("Coupon child count : ${it.size}")
+            }
+
+        }
+
     }
 
     constructor(context: Context) : super(context)
@@ -66,7 +87,7 @@ class NavigationBar : LinearLayout, View.OnClickListener {
                 context,
                 R.color.nav_disable_tint
             ),
-        )
+        )/*
         binding.basketIv.setColorFilter(
             ContextCompat.getColor(
                 context,
@@ -79,7 +100,7 @@ class NavigationBar : LinearLayout, View.OnClickListener {
                 context,
                 R.color.nav_disable_tint
             ),
-        )
+        )*/
         binding.favoritesIv.setColorFilter(
             ContextCompat.getColor(
                 context,
@@ -119,16 +140,7 @@ class NavigationBar : LinearLayout, View.OnClickListener {
                     )
                 }
                 1 -> {
-                    binding.basketIv.setColorFilter(
-                        (valueAnimator.animatedValue as Int),
-                        PorterDuff.Mode.SRC_IN
-                    )
-                    binding.basketTv.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.nav_active_tint
-                        )
-                    )
+
                 }
                 2 -> {
                     binding.favoritesIv.setColorFilter(
@@ -153,7 +165,6 @@ class NavigationBar : LinearLayout, View.OnClickListener {
         textAnim.addUpdateListener { valueAnimator: ValueAnimator ->
             when (pos) {
                 0 -> binding.fixturesTv.setTextColor((valueAnimator.animatedValue as Int))
-                1 -> binding.basketTv.setTextColor((valueAnimator.animatedValue as Int))
                 2 -> binding.favoritesTv.setTextColor((valueAnimator.animatedValue as Int))
             }
         }
@@ -170,12 +181,14 @@ class NavigationBar : LinearLayout, View.OnClickListener {
             PorterDuff.Mode.SRC_IN
         )
         binding.fixturesTv.setTextColor(ContextCompat.getColor(context, R.color.nav_active_tint))
+/*
 
         binding.basketIv.setColorFilter(
             ContextCompat.getColor(context, R.color.nav_disable_tint),
             PorterDuff.Mode.SRC_IN
         )
         binding.basketTv.setTextColor(ContextCompat.getColor(context, R.color.nav_disable_tint))
+*/
 
         binding.favoritesIv.setColorFilter(
             ContextCompat.getColor(context, R.color.nav_disable_tint),
@@ -201,4 +214,6 @@ class NavigationBar : LinearLayout, View.OnClickListener {
     interface NavigationBarListener {
         fun onNavigationClicked(pos: Int)
     }
+
+
 }
