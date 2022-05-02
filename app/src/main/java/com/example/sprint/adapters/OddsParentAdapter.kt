@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sprint.data.entities.MarketsItem
+import com.example.sprint.data.entities.OutcomesItem
 import com.example.sprint.data.locale.MarketType
 import com.example.sprint.databinding.ItemMatchOddParentBinding
 import com.example.sprint.utils.GeneralUtils
@@ -15,7 +16,7 @@ import com.example.sprint.utils.GeneralUtils
 class OddsParentAdapter(
     private val context: Context,
     private val items: ArrayList<MarketsItem>,
-    private var itemListener: OddsChildAdapter.OddItemListener,
+    private val itemListener: OddParentListener,
 
     ) : RecyclerView.Adapter<OddsParentAdapter.MyViewHolder>() {
 
@@ -31,7 +32,7 @@ class OddsParentAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(items[position], itemListener)
+        holder.bind(items[position])
     }
 
     override fun getItemCount() = items.size
@@ -40,17 +41,13 @@ class OddsParentAdapter(
     inner class MyViewHolder(val binding: ItemMatchOddParentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        fun bind(bet: MarketsItem) {
 
-        private var itemListener: OddsChildAdapter.OddItemListener? = null
-
-        fun bind(bet: MarketsItem, itemListener: OddsChildAdapter.OddItemListener) {
-            this.itemListener = itemListener
-
-            val position = adapterPosition
+            val position = bindingAdapterPosition
             val params = binding.root.layoutParams as RecyclerView.LayoutParams
             if (position == items.lastIndex) {
                 params.bottomMargin =
-                    GeneralUtils.getInstance(context = context).convertDpToPixel(60,context)
+                    GeneralUtils.getInstance(context = context).convertDpToPixel(60, context)
                 binding.root.layoutParams = params
             } else {
                 params.bottomMargin = 0
@@ -76,9 +73,18 @@ class OddsParentAdapter(
             binding.childRv.apply {
                 layoutManager = childLayoutManager
                 //  adapter = OddsChildAdapter(bet.values as ArrayList<Value>)
-                adapter = this@MyViewHolder.itemListener?.let { OddsChildAdapter(bet, it) }
+                adapter = OddsChildAdapter(bet,
+                    object : OddsChildAdapter.OddItemListener {
+                        override fun onOddItemSelected(outcomesItem: OutcomesItem) {
+                            itemListener.onOddItemSelected(outComesItem = outcomesItem, marketsItem = bet)
+                        }
+
+                    })
             }
         }
     }
+}
 
+interface OddParentListener {
+    fun onOddItemSelected(outComesItem: OutcomesItem, marketsItem: MarketsItem)
 }

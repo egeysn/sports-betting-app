@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentActivity
 import com.example.sprint.utils.LoadingHelper
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 open class BaseFragment : Fragment() {
 
     private val loadingHelper by lazy { LoadingHelper() }

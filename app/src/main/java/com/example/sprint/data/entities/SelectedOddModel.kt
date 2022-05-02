@@ -15,6 +15,8 @@ data class SelectedOddModel(
 
     val commenceTime: String? ,
 
-    val awayTeam: String?
+    val awayTeam: String?,
+
+    val marketId:String?
 )
 

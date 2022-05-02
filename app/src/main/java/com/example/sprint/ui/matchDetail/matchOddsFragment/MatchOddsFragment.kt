@@ -14,10 +14,13 @@ import com.example.sprint.data.entities.OutcomesItem
 import com.example.sprint.data.entities.SelectedOddModel
 import com.example.sprint.databinding.FragmentMatchOddsBinding
 import com.example.sprint.utils.OddUtilHelper
-import com.naylalabs.scorely.adapters.OddsChildAdapter
+import com.naylalabs.scorely.adapters.OddParentListener
 import com.naylalabs.scorely.adapters.OddsParentAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class MatchOddsFragment(val oddModel: OddModel?) :
     BaseFragment() {
 
@@ -48,19 +51,21 @@ class MatchOddsFragment(val oddModel: OddModel?) :
         if (!oddModel?.bookmakers.isNullOrEmpty()) {
             adapter = OddsParentAdapter(requireContext(),
                 oddModel?.bookmakers?.get(0)?.markets as ArrayList<MarketsItem>,
-                object : OddsChildAdapter.OddItemListener {
-                    override fun onOddItemSelected(outcomesItem: OutcomesItem) {
+                object : OddParentListener {
+                    override fun onOddItemSelected(outCome: OutcomesItem, marketsItem: MarketsItem) {
                         oddUtilHelper.addSelectedOdd(
                             SelectedOddModel(
-                                outcomesItem,
-                                sportKey = oddModel.sportKey,
-                                id = oddModel.id,
-                                homeTeam = oddModel.homeTeam,
-                                sportTitle = oddModel.sportTitle,
-                                commenceTime = oddModel.commenceTime,
-                                awayTeam = oddModel.awayTeam
+                                outCome  = outCome,
+                                sportKey = this@MatchOddsFragment.oddModel.sportKey,
+                                id = this@MatchOddsFragment.oddModel.id,
+                                homeTeam = this@MatchOddsFragment.oddModel.homeTeam,
+                                sportTitle = this@MatchOddsFragment.oddModel.sportTitle,
+                                commenceTime = this@MatchOddsFragment.oddModel.commenceTime,
+                                awayTeam = this@MatchOddsFragment.oddModel.awayTeam,
+                                marketId = marketsItem.key
                             )
                         )
+                        adapter.notifyDataSetChanged()
                     }
 
                 })
