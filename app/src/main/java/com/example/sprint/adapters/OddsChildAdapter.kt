@@ -53,7 +53,8 @@ class OddsChildAdapter(
                 parentTv.text = outcomesItem.name
                 oddTv.text = outcomesItem.price.toString()
 
-                if (outcomesItem.betId?.let { oddUtilHelper.isHaveSelectedOdd( betId = it) } == true) {
+                //TODO FIX  INITIAL VALUE PROBLEM ON PARCELIZE CLASSES
+                if (outcomesItem.betId.let { oddUtilHelper.isHaveSelectedOdd(betId = it.orEmpty()) } || lastSelectedItem == adapterPosition) {
                     binding.oddsContainer.setCardBackgroundColor(
                         ContextCompat.getColor(
                             binding.root.context,
@@ -71,6 +72,10 @@ class OddsChildAdapter(
 
 
                 root.setOnClickListener {
+                    val copyLastCheck = lastSelectedItem
+                    lastSelectedItem = adapterPosition
+                    notifyItemChanged(copyLastCheck)
+                    notifyItemChanged(lastSelectedItem)
                     itemListener.onOddItemSelected(outcomesItem)
 
                 }

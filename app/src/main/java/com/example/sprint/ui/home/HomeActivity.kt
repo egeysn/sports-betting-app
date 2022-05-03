@@ -25,8 +25,6 @@ class HomeActivity : BaseActivity(), NavigationBar.NavigationBarListener {
         adjustUI()
     }
 
-
-
     private fun adjustUI() {
         viewPager = binding.viewPager
 
@@ -51,6 +49,10 @@ class HomeActivity : BaseActivity(), NavigationBar.NavigationBarListener {
 
     override fun onNavigationClicked(pos: Int) {
         binding.viewPager.currentItem = pos
+    }
+
+    fun changeSelectedTab(pos : Int){
+        viewPager.currentItem = pos
     }
 
     companion object {

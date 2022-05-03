@@ -1,27 +1,26 @@
 package com.example.sprint.utils
 
 import androidx.lifecycle.MutableLiveData
-import com.example.sprint.data.entities.SelectedOddModel
+import com.example.sprint.data.entities.SelectedMatchOdd
 import timber.log.Timber
-import java.util.function.Predicate
 
 
 class OddUtilHelper {
 
-    val selectedOdds: MutableLiveData<ArrayList<SelectedOddModel>> = MutableLiveData()
+    val selectedMatchOdds: MutableLiveData<ArrayList<SelectedMatchOdd>> = MutableLiveData()
 
 
-    fun addSelectedOdd(model: SelectedOddModel) {
-        val list = arrayListOf<SelectedOddModel>()
-        if (!selectedOdds.value.isNullOrEmpty()) {
-            list.addAll(selectedOdds.value!!)
+    fun addSelectedOdd(match: SelectedMatchOdd) {
+        val list = arrayListOf<SelectedMatchOdd>()
+        if (!selectedMatchOdds.value.isNullOrEmpty()) {
+            list.addAll(selectedMatchOdds.value!!)
         }
-        list.add(model)
-        selectedOdds.postValue(list)
+        list.add(match)
+        selectedMatchOdds.postValue(list)
     }
 
     fun removeSelectedOdd(id: String) {
-        val list = selectedOdds.value
+        val list = selectedMatchOdds.value
         if (!list.isNullOrEmpty()) {
             for (item in list) {
                 if (item.id == id) {
@@ -32,11 +31,22 @@ class OddUtilHelper {
     }
 
     fun isHaveSelectedOdd(betId: String): Boolean {
-        val list = selectedOdds.value
+        val list = selectedMatchOdds.value
         return if (list.isNullOrEmpty()) {
             false
         } else {
             val findOdd = list.find { it.outCome?.betId == betId }
+            Timber.d("isHaveSelectedOdd : $findOdd")
+            findOdd != null
+        }
+    }
+
+    fun isHaveSelectedMatch(id: String): Boolean {
+        val list = selectedMatchOdds.value
+        return if (list.isNullOrEmpty()) {
+            false
+        } else {
+            val findOdd = list.find { it.id == id }
             Timber.d("isHaveSelectedOdd : $findOdd")
             findOdd != null
         }

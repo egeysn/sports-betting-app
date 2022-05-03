@@ -41,23 +41,6 @@ class FixturesChildAdapter(private val fixtures: List<OddModel>, private val con
             binding.homeClubTv.text = item.homeTeam
             binding.awayClubTv.text = item.awayTeam
 
-       /*     val position = adapterPosition
-            val params = binding.root.layoutParams as RecyclerView.LayoutParams
-            if (position == fixtures.lastIndex) {
-                params.bottomMargin = GeneralUtils.getInstance(context).convertDpToPixel(8,itemView.context)
-                binding.root.layoutParams = params
-            } else {
-                params.bottomMargin = 0
-                binding.root.layoutParams = params
-            }*/
-
-
-        /*    if(item.scores == null){
-                binding.scoreTv.text = item.commenceTime?.toHour()
-            }else{
-                binding.scoreTv.text = "${item.scores[0].score } - ${item.scores[1].score}"
-
-            }*/
 
             Glide.with(binding.root.context)
                 .load(Constants.HOME_TEAM_LOGO)

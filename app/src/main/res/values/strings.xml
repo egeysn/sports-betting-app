@@ -13,4 +13,5 @@
     <string name="odds">Odds</string>
     <string name="Details">Details</string>
     <string name="Match">Match</string>
+    <string name="add_match">Add Match</string>
 </resources>

@@ -31,6 +31,7 @@ android {
             buildConfigField "String", "API_KEY", "\"2de4ad81b4a6809d68704b6f9fdec107\""
         }
         debug {
+            minifyEnabled false
             buildConfigField "String", "BASE_URL", "\"https://api.the-odds-api.com/v4/\""
             buildConfigField "String", "API_KEY", "\"2de4ad81b4a6809d68704b6f9fdec107\""
         }

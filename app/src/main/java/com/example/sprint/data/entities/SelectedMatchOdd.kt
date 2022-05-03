@@ -1,7 +1,7 @@
 package com.example.sprint.data.entities
 
 
-data class SelectedOddModel(
+data class SelectedMatchOdd(
 
     val outCome : OutcomesItem?,
 
@@ -17,6 +17,6 @@ data class SelectedOddModel(
 
     val awayTeam: String?,
 
-    val marketId:String?
+    val marketsItem:MarketsItem?
 )
 

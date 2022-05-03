@@ -29,8 +29,6 @@ class MatchDetailsFragment(val matchDetail: OddModel?) :
     ): View {
         binding = FragmentMatchDetailBinding.inflate(inflater, container, false)
 
-
-        setupObservers()
         adjustUI()
         return binding.root
     }
@@ -42,49 +40,5 @@ class MatchDetailsFragment(val matchDetail: OddModel?) :
 
     }
 
-
-    private fun setupObservers() {
-    /*    viewModel.fetchFixtures().observe(viewLifecycleOwner) {
-            when (it.status) {
-                Resource.Status.SUCCESS -> {
-                    val fixtureList = it.data
-                    if (!fixtureList.isNullOrEmpty()) {
-                        onFixtureListFetched(fixtureList)
-                    } else {
-                        binding.emptyList.visibility = View.VISIBLE
-                    }
-                    hideLoading()
-                }
-                Resource.Status.ERROR -> {
-                    binding.emptyList.visibility = View.VISIBLE
-                    hideLoading()
-                }
-                Resource.Status.LOADING -> {
-                    showLoading()
-                }
-            }
-        }*/
-
-    }
-
-
-/*
-    private fun onFixtureListFetched(fixtureList: ArrayList<ScoreModel>) {
-        val groupList = fixtureList.groupBy { it.sportTitle }
-        initRecyclerView(groupList as HashMap<String, List<ScoreModel>>)
-    }
-
-    private fun initRecyclerView(hashMap: HashMap<String, List<ScoreModel>>) {
-        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        binding.fixtureRv.layoutManager = layoutManager
-        if (::adapter.isInitialized) {
-            adapter.setItems(hashMap)
-        } else {
-            adapter = FixturesParentAdapter(requireContext())
-            binding.fixtureRv.adapter = adapter
-            adapter.setItems(hashMap)
-        }
-
-    }*/
 
 }

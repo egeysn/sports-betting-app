@@ -35,7 +35,7 @@ class NavigationBar : LinearLayout, View.OnClickListener {
     }
 
     private fun setupObservers() {
-        oddUtilHelper.selectedOdds.observe(context as LifecycleOwner) {
+        oddUtilHelper.selectedMatchOdds.observe(context as LifecycleOwner) {
             if (it != null && it.isNotEmpty()) {
                 binding.basketTv.text = "${it.size}"
                 Timber.d("Coupon child count : ${it.size}")

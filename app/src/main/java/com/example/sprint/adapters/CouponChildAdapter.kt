@@ -7,18 +7,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.example.sprint.data.entities.Character
-import com.example.sprint.data.entities.SelectedOddModel
+import com.example.sprint.data.entities.SelectedMatchOdd
+import com.example.sprint.data.locale.MarketType
 import com.example.sprint.databinding.CouponMatchItemBinding
 import com.example.sprint.utils.Constants
+import com.example.sprint.utils.toDetailCardDate
 
 
-class CouponsChildAdapter(val context: Context, private val items: ArrayList<SelectedOddModel>
+class CouponsChildAdapter(val context: Context, private val items: ArrayList<SelectedMatchOdd>
 ) : RecyclerView.Adapter<CouponsChildAdapter.CouponsChildViewHolder>() {
 
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setItems(items: ArrayList<SelectedOddModel>) {
+    fun setItems(items: ArrayList<SelectedMatchOdd>) {
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()
@@ -26,7 +27,7 @@ class CouponsChildAdapter(val context: Context, private val items: ArrayList<Sel
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CouponsChildViewHolder {
         val itemBinding =
-            CouponMatchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            com.example.sprint.databinding.CouponMatchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return CouponsChildViewHolder(itemBinding)
     }
@@ -40,17 +41,42 @@ class CouponsChildAdapter(val context: Context, private val items: ArrayList<Sel
     inner class CouponsChildViewHolder( val binding: CouponMatchItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: SelectedOddModel) {
+        fun bind(item: SelectedMatchOdd) {
 
-            Glide.with(binding.root.context)
-                .load(Constants.HOME_TEAM_LOGO)
-                .transform(CircleCrop())
-                .into(binding.homeClubIv)
+            binding.apply {
+                homeClubTv.text = item.homeTeam
+                awayClubTv.text = item.awayTeam
+                oddTv.text = item.outCome?.price.toString()
+                priceTv.text = item.outCome?.name.toString()
 
-            Glide.with(binding.root.context)
-                .load(Constants.AWAY_TEAM_LOGO)
-                .transform(CircleCrop())
-                .into(binding.awayClubIv)
+                dateTv.text = item.commenceTime?.toDetailCardDate().toString()
+
+                var labelTv = ""
+                when (item.marketsItem?.key) {
+                    MarketType.H2H -> labelTv = "Match Winner"
+                    MarketType.SPREADS -> labelTv = "Handicap"
+                    MarketType.TOTALS -> labelTv = "Goals Over/Under"
+                    MarketType.OUTRIGHTS -> labelTv = "Outrights, Futures"
+                    MarketType.H2H_LAY -> labelTv = "Head to head, Moneyline"
+                    MarketType.OUTRIGHTS_LAY -> "Outrights, Futures"
+                    else -> { // Note the block
+                    }
+                }
+                binding.marketNameTv.text = labelTv
+
+                Glide.with(binding.root.context)
+                    .load(Constants.HOME_TEAM_LOGO)
+                    .transform(CircleCrop())
+                    .into(homeClubIv)
+
+                Glide.with(binding.root.context)
+                    .load(Constants.AWAY_TEAM_LOGO)
+                    .transform(CircleCrop())
+                    .into(awayClubIv)
+            }
+
+
+
 
             itemView.setOnClickListener {
              /*   itemView.context.startActivity(

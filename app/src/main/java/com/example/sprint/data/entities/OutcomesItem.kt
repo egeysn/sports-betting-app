@@ -7,6 +7,7 @@ import java.util.*
 
 @Parcelize
 data class OutcomesItem(
+    //TODO PARCELIZE OBJECT NOT SUPPORTING DEFAULT VALUES THROWING ERROR FIND A SOLUTION
     val betId:String? = UUID.randomUUID().toString(),
 
     @field:SerializedName("price")
