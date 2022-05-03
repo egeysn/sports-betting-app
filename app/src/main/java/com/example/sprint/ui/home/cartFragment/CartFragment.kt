@@ -44,7 +44,7 @@ class CartFragment() :
         binding = FragmentCartBinding.inflate(inflater, container, false)
         setupObservers()
         listeners()
-        oddUtilHelper.selectedBetMatchOdds.value?.let { drawUI(it) }
+        drawUI(arrayListOf())
         return binding.root
     }
 

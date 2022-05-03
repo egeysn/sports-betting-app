@@ -28,12 +28,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"https://api.the-odds-api.com/v4/\""
-            buildConfigField "String", "API_KEY", "\"2de4ad81b4a6809d68704b6f9fdec107\""
+            buildConfigField "String", "API_KEY", "\"b7e6788af9fc31cfc258411f840dc07d\""
         }
         debug {
             minifyEnabled false
             buildConfigField "String", "BASE_URL", "\"https://api.the-odds-api.com/v4/\""
-            buildConfigField "String", "API_KEY", "\"2de4ad81b4a6809d68704b6f9fdec107\""
+            buildConfigField "String", "API_KEY", "\"b7e6788af9fc31cfc258411f840dc07d\""
         }
     }
     compileOptions {
