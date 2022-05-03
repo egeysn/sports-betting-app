@@ -27,7 +27,7 @@ class OddUtilHelper {
                     if (item.id == id) {
                         list.remove(item)
                         selectedMatchOdds.postValue(list!!)
-                        break
+                        return true
                     }
                 }
 
@@ -36,7 +36,7 @@ class OddUtilHelper {
         } catch (e: Exception) {
             return false
         }
-        return true
+        return false
     }
 
     fun isHaveSelectedOdd(betId: String): Boolean {
@@ -59,6 +59,22 @@ class OddUtilHelper {
             Timber.d("isHaveSelectedOdd : $findOdd")
             findOdd != null
         }
+    }
+
+    fun getMaxOdd(): Double {
+        var sum = 0.0
+        val list = selectedMatchOdds.value
+        return if (list.isNullOrEmpty()) {
+            sum
+        } else {
+            list.forEach { sum += it.outCome?.price?.toDouble()!! }
+            sum
+        }
+    }
+
+    fun getMaxPrice(price: Double): Double {
+        val maxOdd = getMaxOdd()
+        return maxOdd * price
     }
 
     companion object {

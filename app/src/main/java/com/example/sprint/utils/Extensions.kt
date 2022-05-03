@@ -37,3 +37,4 @@ fun String.toDetailCardDate(): String {
     }
     return ""
 }
+

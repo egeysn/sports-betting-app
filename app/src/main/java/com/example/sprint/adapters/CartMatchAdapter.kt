@@ -11,14 +11,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.sprint.data.entities.SelectedMatchOdd
 import com.example.sprint.data.locale.MarketType
-import com.example.sprint.databinding.CouponMatchItemBinding
+import com.example.sprint.databinding.CartMatchItemBinding
 import com.example.sprint.utils.Constants
 import com.example.sprint.utils.OddUtilHelper
 import com.example.sprint.utils.toDetailCardDate
 
 
-class CouponMatchAdapter(val context: Context, private val items: ArrayList<SelectedMatchOdd>
-) : ListAdapter<SelectedMatchOdd,CouponMatchAdapter.CouponsChildViewHolder>(REPO_COMPARATOR) {
+class CartMatchAdapter(val context: Context, private val items: ArrayList<SelectedMatchOdd>
+) : ListAdapter<SelectedMatchOdd,CartMatchAdapter.CouponsChildViewHolder>(REPO_COMPARATOR) {
 
 
     private var oddutilHelper:OddUtilHelper = OddUtilHelper.getInstance()
@@ -38,7 +38,7 @@ class CouponMatchAdapter(val context: Context, private val items: ArrayList<Sele
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CouponsChildViewHolder {
         val itemBinding =
-            CouponMatchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            CartMatchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return CouponsChildViewHolder(itemBinding)
     }
@@ -49,7 +49,7 @@ class CouponMatchAdapter(val context: Context, private val items: ArrayList<Sele
 
     override fun getItemCount() = items.size
 
-    inner class CouponsChildViewHolder( val binding: CouponMatchItemBinding) :
+    inner class CouponsChildViewHolder( val binding: CartMatchItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: SelectedMatchOdd) {

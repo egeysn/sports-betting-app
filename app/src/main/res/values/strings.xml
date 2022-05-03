@@ -14,4 +14,9 @@
     <string name="Details">Details</string>
     <string name="Match">Match</string>
     <string name="add_match">Add Match</string>
+    <string name="coupon_price">Coupon Price</string>
+    <string name="odd">Odd</string>
+    <string name="max_price">Max Price</string>
+    <string name="price">Price</string>
+    <string name="coupon_price_tl">Coupon Price\n(TL)</string>
 </resources>

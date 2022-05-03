@@ -1,18 +1,16 @@
-package com.example.sprint.ui.home.couponFragment
+package com.example.sprint.ui.home.cartFragment
 
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.sprint.common.BaseViewModel
 import com.example.sprint.data.entities.OddModel
-import com.example.sprint.data.entities.ScoreModel
 import com.example.sprint.data.repositories.Repository
 import com.example.sprint.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CouponFragmentViewModel @Inject constructor(private val repository: Repository) :
+class CartFragmentViewModel @Inject constructor(private val repository: Repository) :
     BaseViewModel() {
 
 
