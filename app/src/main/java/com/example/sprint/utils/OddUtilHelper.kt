@@ -83,12 +83,12 @@ class OddUtilHelper {
     }
 
     fun getMaxOdd(): Double {
-        var sum = 0.0
+        var sum = 1.0
         val list = selectedBetMatchOdds.value
         return if (list.isNullOrEmpty()) {
             sum
         } else {
-            list.forEach { sum += it.betItem?.price?.toDouble()!! }
+            list.forEach { sum *= it.betItem?.price!! }
             sum
         }
     }

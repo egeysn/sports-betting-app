@@ -14,11 +14,11 @@ import com.example.sprint.databinding.FixtureParentItemBinding
 class FixturesParentAdapter constructor(private val context: Context) : RecyclerView.Adapter<FixturesParentAdapter.FixturesViewHolder>() {
 
     private val items: ArrayList<String> = arrayListOf()
-    private var hashList: HashMap<String, List<OddModel>> = HashMap()
+    private var hashList: HashMap<String, ArrayList<OddModel>> = HashMap()
 
     private val viewPool = RecyclerView.RecycledViewPool()
 
-    fun setItems(hashMap: HashMap<String, List<OddModel>>) {
+    fun setItems(hashMap: HashMap<String, ArrayList<OddModel>>) {
         this.hashList.clear()
         this.hashList = hashMap
         this.items.clear()
@@ -58,7 +58,9 @@ class FixturesParentAdapter constructor(private val context: Context) : Recycler
                 )
                 binding.childRecyclerview.apply {
                     layoutManager = childLayoutManager
-                    adapter = hashList[league]?.let { FixturesChildAdapter(it,context) }
+
+                    adapter = hashList[league]?.let {
+                        FixturesChildAdapter(it,context) }
                     setRecycledViewPool(viewPool)
                 }
             } else {

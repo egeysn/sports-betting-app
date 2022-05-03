@@ -15,11 +15,10 @@ import javax.inject.Inject
 class FixturesViewModel @Inject constructor(private val repository: Repository) :
     BaseViewModel() {
 
-     val fixtures : MutableLiveData<Resource<ArrayList<OddModel>>> = MutableLiveData()
+    var fixtures: ArrayList<OddModel> = arrayListOf()
 
     fun fetchFixtures(): LiveData<Resource<ArrayList<OddModel>>> {
-        val response =  repository.getOdds("eu","h2h,spreads,totals")
-        return response
+        return repository.getOdds("eu", "h2h,spreads,totals")
     }
 
 
