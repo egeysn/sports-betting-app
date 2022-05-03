@@ -13,12 +13,17 @@ class AnalyticsHelper {
     private val mFirebaseAnalytics = Firebase.analytics
 
     companion object {
+
         @Volatile
         private var instance: AnalyticsHelper? = null
 
         fun getInstance() = instance ?: synchronized(this) {
             instance ?: AnalyticsHelper().also { instance = it }
         }
+
+        const val MATCH_DETAIL_CLICKED  :String  = "match_detail_clicked"
+        const val ADD_TO_CART_EVENT  :String  = "add_to_cart_event"
+        const val REMOVE_FROM_CARD_EVENT  :String  = "remove_from_cart_event"
     }
 
     fun track(eventName: String?, properties: HashMap<String, Any?>) {
@@ -61,4 +66,5 @@ class AnalyticsHelper {
             Settings.Secure.ANDROID_ID
         )
     }
+
 }

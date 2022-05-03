@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sprint.data.entities.MarketsItem
-import com.example.sprint.data.entities.OutcomesItem
+import com.example.sprint.data.entities.BetItem
 import com.example.sprint.data.locale.MarketType
 import com.example.sprint.databinding.ItemMatchOddParentBinding
 import com.example.sprint.utils.GeneralUtils
@@ -74,8 +74,8 @@ class OddsParentAdapter(
                 layoutManager = childLayoutManager
                 adapter = OddsChildAdapter(bet,
                     object : OddsChildAdapter.OddItemListener {
-                        override fun onOddItemSelected(outcomesItem: OutcomesItem) {
-                            itemListener.onOddItemSelected(outComesItem = outcomesItem, marketsItem = bet)
+                        override fun onOddItemSelected(betItem: BetItem) {
+                            itemListener.onOddItemSelected(outComesItem = betItem, marketsItem = bet)
                         }
 
                     })
@@ -85,5 +85,5 @@ class OddsParentAdapter(
 }
 
 interface OddParentListener {
-    fun onOddItemSelected(outComesItem: OutcomesItem, marketsItem: MarketsItem)
+    fun onOddItemSelected(outComesItem: BetItem, marketsItem: MarketsItem)
 }

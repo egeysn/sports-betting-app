@@ -1,32 +1,32 @@
 package com.example.sprint.utils
 
 import androidx.lifecycle.MutableLiveData
-import com.example.sprint.data.entities.SelectedMatchOdd
+import com.example.sprint.data.entities.SelectedBetMatch
 import timber.log.Timber
 
 
 class OddUtilHelper {
 
-    val selectedMatchOdds: MutableLiveData<ArrayList<SelectedMatchOdd>> = MutableLiveData()
+    val selectedBetMatchOdds: MutableLiveData<ArrayList<SelectedBetMatch>> = MutableLiveData()
 
 
-    fun addSelectedOdd(match: SelectedMatchOdd) {
-        val list = arrayListOf<SelectedMatchOdd>()
-        if (!selectedMatchOdds.value.isNullOrEmpty()) {
-            list.addAll(selectedMatchOdds.value!!)
+    fun addSelectedOdd(betMatch: SelectedBetMatch) {
+        val list = arrayListOf<SelectedBetMatch>()
+        if (!selectedBetMatchOdds.value.isNullOrEmpty()) {
+            list.addAll(selectedBetMatchOdds.value!!)
         }
-        list.add(match)
-        selectedMatchOdds.postValue(list)
+        list.add(betMatch)
+        selectedBetMatchOdds.postValue(list)
     }
 
     fun removeSelectedOdd(id: String): Boolean {
         try {
-            val list = selectedMatchOdds.value
+            val list = selectedBetMatchOdds.value
             if (!list.isNullOrEmpty()) {
                 for (item in list) {
                     if (item.id == id) {
                         list.remove(item)
-                        selectedMatchOdds.postValue(list!!)
+                        selectedBetMatchOdds.postValue(list!!)
                         return true
                     }
                 }
@@ -40,18 +40,18 @@ class OddUtilHelper {
     }
 
     fun isHaveSelectedOdd(betId: String): Boolean {
-        val list = selectedMatchOdds.value
+        val list = selectedBetMatchOdds.value
         return if (list.isNullOrEmpty()) {
             false
         } else {
-            val findOdd = list.find { it.outCome?.id == betId }
+            val findOdd = list.find { it.betItem?.id == betId }
             Timber.d("isHaveSelectedOdd : $findOdd")
             findOdd != null
         }
     }
 
     fun isHaveSelectedMatch(id: String): Boolean {
-        val list = selectedMatchOdds.value
+        val list = selectedBetMatchOdds.value
         return if (list.isNullOrEmpty()) {
             false
         } else {
@@ -63,11 +63,11 @@ class OddUtilHelper {
 
     fun getMaxOdd(): Double {
         var sum = 0.0
-        val list = selectedMatchOdds.value
+        val list = selectedBetMatchOdds.value
         return if (list.isNullOrEmpty()) {
             sum
         } else {
-            list.forEach { sum += it.outCome?.price?.toDouble()!! }
+            list.forEach { sum += it.betItem?.price?.toDouble()!! }
             sum
         }
     }

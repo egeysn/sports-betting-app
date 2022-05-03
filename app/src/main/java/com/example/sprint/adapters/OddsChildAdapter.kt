@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sprint.R
 import com.example.sprint.data.entities.MarketsItem
-import com.example.sprint.data.entities.OutcomesItem
+import com.example.sprint.data.entities.BetItem
 import com.example.sprint.databinding.ItemMatchOddChildBinding
 import com.example.sprint.utils.OddUtilHelper
 
@@ -23,7 +23,7 @@ class OddsChildAdapter(
     private var lastSelectedItem: Int = -1
 
     interface OddItemListener {
-        fun onOddItemSelected(oddModel: OutcomesItem)
+        fun onOddItemSelected(oddModel: BetItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -46,15 +46,15 @@ class OddsChildAdapter(
 
         private var itemListener: OddItemListener? = null
 
-        fun bind(outcomesItem: OutcomesItem, itemListener: OddItemListener) {
+        fun bind(betItem: BetItem, itemListener: OddItemListener) {
             this.itemListener = itemListener
 
             binding.apply {
-                parentTv.text = outcomesItem.name
-                oddTv.text = outcomesItem.price.toString()
+                parentTv.text = betItem.name
+                oddTv.text = betItem.price.toString()
 
                 //TODO FIX  INITIAL VALUE PROBLEM ON PARCELIZE CLASSES
-                if (outcomesItem.id.let { oddUtilHelper.isHaveSelectedOdd(betId = it.orEmpty()) } || lastSelectedItem == adapterPosition) {
+                if (betItem.id.let { oddUtilHelper.isHaveSelectedOdd(betId = it.orEmpty()) } || lastSelectedItem == adapterPosition) {
                     binding.oddsContainer.setCardBackgroundColor(
                         ContextCompat.getColor(
                             binding.root.context,
@@ -76,7 +76,7 @@ class OddsChildAdapter(
                     lastSelectedItem = adapterPosition
                     notifyItemChanged(copyLastCheck)
                     notifyItemChanged(lastSelectedItem)
-                    itemListener.onOddItemSelected(outcomesItem)
+                    itemListener.onOddItemSelected(betItem)
 
                 }
             }

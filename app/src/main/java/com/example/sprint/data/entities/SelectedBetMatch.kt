@@ -1,9 +1,9 @@
 package com.example.sprint.data.entities
 
 
-data class SelectedMatchOdd(
+data class SelectedBetMatch(
 
-    val outCome : OutcomesItem?,
+    val betItem : BetItem?,
 
     val sportKey: String?,
 
@@ -13,7 +13,7 @@ data class SelectedMatchOdd(
 
     val sportTitle: String?,
 
-    val commenceTime: String? ,
+    val commenceTime: String?,
 
     val awayTeam: String?,
 

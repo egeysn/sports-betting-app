@@ -1,15 +1,13 @@
 package com.example.sprint.data.entities
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 import java.io.Serializable
 
 import java.util.*
 
 
 
- class OutcomesItem(
+ class BetItem(
     //TODO PARCELIZE OBJECT NOT SUPPORTING DEFAULT VALUES THROWING ERROR FIND A SOLUTION
     var id:String?  = UUID.randomUUID().toString(),
 

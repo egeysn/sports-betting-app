@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sprint.adapters.CartMatchAdapter
 import com.example.sprint.common.BaseFragment
-import com.example.sprint.data.entities.SelectedMatchOdd
+import com.example.sprint.data.entities.SelectedBetMatch
 import com.example.sprint.databinding.FragmentCartBinding
 import com.example.sprint.ui.home.HomeActivity
+import com.example.sprint.utils.AnalyticsHelper
 import com.example.sprint.utils.OddUtilHelper
 import com.example.sprint.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,7 +44,7 @@ class CartFragment() :
         binding = FragmentCartBinding.inflate(inflater, container, false)
         setupObservers()
         listeners()
-        oddUtilHelper.selectedMatchOdds.value?.let { drawUI(it) }
+        oddUtilHelper.selectedBetMatchOdds.value?.let { drawUI(it) }
         return binding.root
     }
 
@@ -76,20 +77,20 @@ class CartFragment() :
 
 
     private fun setupObservers() {
-        oddUtilHelper.selectedMatchOdds.observe(viewLifecycleOwner) {
+        oddUtilHelper.selectedBetMatchOdds.observe(viewLifecycleOwner) {
             drawUI(it)
         }
     }
 
 
-    private fun drawUI(list:ArrayList<SelectedMatchOdd>) {
+    private fun drawUI(list:ArrayList<SelectedBetMatch>) {
         if(list.isNullOrEmpty()){
             binding.body.visibility = View.GONE
             binding.emptyBody.visibility = View.VISIBLE
         }else{
             binding.body.visibility = View.VISIBLE
             binding.emptyBody.visibility = View.GONE
-            initRecyclerView(matchList = list)
+            initRecyclerView(betMatchList = list)
             updateCartInfoBox()
         }
 
@@ -103,11 +104,11 @@ class CartFragment() :
     }
 
 
-    private fun initRecyclerView(matchList: ArrayList<SelectedMatchOdd>) {
+    private fun initRecyclerView(betMatchList: ArrayList<SelectedBetMatch>) {
 
 
         if (::adapter.isInitialized) {
-            adapter.setItems(matchList)
+            adapter.setItems(betMatchList)
         } else {
             val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             binding.matchRv.addItemDecoration(
@@ -117,19 +118,34 @@ class CartFragment() :
                 )
             )
             binding.matchRv.layoutManager = layoutManager
-            adapter = CartMatchAdapter(requireContext(), matchList)
+            adapter = CartMatchAdapter(requireContext(), betMatchList)
             adapter.setListener(object : CartMatchAdapter.CouponMatchItemListener {
-                override fun onRemoveClicked(pos: Int, selectedMatchOdd: SelectedMatchOdd) {
-                    val status = selectedMatchOdd.id?.let { oddUtilHelper.removeSelectedOdd(it) }
-                    if (status == true)
+                override fun onRemoveClicked(pos: Int, selectedBetMatch: SelectedBetMatch) {
+                    val status = selectedBetMatch.id?.let { oddUtilHelper.removeSelectedOdd(it) }
+                    if (status == true){
                         adapter.notifyItemRemoved(pos)
+                        logToFirebase(modelBet = selectedBetMatch)
                         context?.toast("Removed item")
+                    }
+
                 }
 
             })
             binding.matchRv.adapter = adapter
         }
 
+    }
+    private fun logToFirebase(modelBet: SelectedBetMatch) {
+        val map = HashMap<String, Any?>()
+        modelBet.apply {
+            map["id"] = id.toString()
+            map["betId"] = betItem?.id
+            map["marketId"] = marketsItem?.key
+            map["awayTeam"] = awayTeam.toString()
+            map["homeTeam"] = homeTeam.toString()
+        }
+
+        analyticsHelper.track(AnalyticsHelper.REMOVE_FROM_CARD_EVENT, map)
     }
 
 }

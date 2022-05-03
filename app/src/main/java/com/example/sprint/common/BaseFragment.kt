@@ -7,11 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import com.example.sprint.utils.AnalyticsHelper
 import com.example.sprint.utils.LoadingHelper
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
+@AndroidEntryPoint
 open class BaseFragment : Fragment() {
+
+    @Inject
+    lateinit var analyticsHelper: AnalyticsHelper
 
     private val loadingHelper by lazy { LoadingHelper() }
     private var myContext: FragmentActivity? = null

@@ -8,8 +8,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sprint.common.BaseFragment
 import com.example.sprint.data.entities.OddModel
-import com.example.sprint.data.entities.ScoreModel
 import com.example.sprint.databinding.FragmentMatchDetailBinding
+import com.example.sprint.utils.AnalyticsHelper
 import com.naylalabs.scorely.adapters.FixturesParentAdapter
 
 class MatchDetailsFragment(val matchDetail: OddModel?) :
@@ -30,13 +30,26 @@ class MatchDetailsFragment(val matchDetail: OddModel?) :
         binding = FragmentMatchDetailBinding.inflate(inflater, container, false)
 
         adjustUI()
+        logToFirebase()
         return binding.root
+    }
+
+    private fun logToFirebase() {
+        val map = HashMap<String, Any?>()
+        matchDetail?.apply {
+            map["id"] = id.toString()
+            map["awayTeam"] = awayTeam.toString()
+            map["homeTeam"] = homeTeam.toString()
+        }
+
+        analyticsHelper.track(AnalyticsHelper.MATCH_DETAIL_CLICKED, map)
     }
 
     private fun adjustUI() {
         binding.apply {
             calendarTv.text = matchDetail?.commenceTime
         }
+
 
     }
 

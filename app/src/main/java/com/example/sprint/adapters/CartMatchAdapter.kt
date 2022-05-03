@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.example.sprint.data.entities.SelectedMatchOdd
+import com.example.sprint.data.entities.SelectedBetMatch
 import com.example.sprint.data.locale.MarketType
 import com.example.sprint.databinding.CartMatchItemBinding
 import com.example.sprint.utils.Constants
@@ -17,8 +17,8 @@ import com.example.sprint.utils.OddUtilHelper
 import com.example.sprint.utils.toDetailCardDate
 
 
-class CartMatchAdapter(val context: Context, private val items: ArrayList<SelectedMatchOdd>
-) : ListAdapter<SelectedMatchOdd,CartMatchAdapter.CouponsChildViewHolder>(REPO_COMPARATOR) {
+class CartMatchAdapter(val context: Context, private val items: ArrayList<SelectedBetMatch>
+) : ListAdapter<SelectedBetMatch,CartMatchAdapter.CouponsChildViewHolder>(REPO_COMPARATOR) {
 
 
     private var oddutilHelper:OddUtilHelper = OddUtilHelper.getInstance()
@@ -30,7 +30,7 @@ class CartMatchAdapter(val context: Context, private val items: ArrayList<Select
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setItems(items: ArrayList<SelectedMatchOdd>) {
+    fun setItems(items: ArrayList<SelectedBetMatch>) {
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()
@@ -52,13 +52,13 @@ class CartMatchAdapter(val context: Context, private val items: ArrayList<Select
     inner class CouponsChildViewHolder( val binding: CartMatchItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: SelectedMatchOdd) {
+        fun bind(item: SelectedBetMatch) {
 
             binding.apply {
                 homeClubTv.text = item.homeTeam
                 awayClubTv.text = item.awayTeam
-                oddTv.text = item.outCome?.price.toString()
-                priceTv.text = item.outCome?.name.toString()
+                oddTv.text = item.betItem?.price.toString()
+                priceTv.text = item.betItem?.name.toString()
 
                 dateTv.text = item.commenceTime?.toDetailCardDate().toString()
 
@@ -86,7 +86,7 @@ class CartMatchAdapter(val context: Context, private val items: ArrayList<Select
                     .into(awayClubIv)
 
                 removeIv.setOnClickListener {
-                    listener?.onRemoveClicked(pos = bindingAdapterPosition, selectedMatchOdd = item )
+                    listener?.onRemoveClicked(pos = bindingAdapterPosition, selectedBetMatch = item )
 
                 }
             }
@@ -106,14 +106,14 @@ class CartMatchAdapter(val context: Context, private val items: ArrayList<Select
     }
 
     interface CouponMatchItemListener {
-        fun onRemoveClicked(pos: Int, selectedMatchOdd: SelectedMatchOdd)
+        fun onRemoveClicked(pos: Int, selectedBetMatch: SelectedBetMatch)
     }
     companion object {
-        private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<SelectedMatchOdd>() {
-            override fun areItemsTheSame(oldItem: SelectedMatchOdd, newItem: SelectedMatchOdd): Boolean =
+        private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<SelectedBetMatch>() {
+            override fun areItemsTheSame(oldItem: SelectedBetMatch, newItem: SelectedBetMatch): Boolean =
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: SelectedMatchOdd, newItem: SelectedMatchOdd): Boolean =
+            override fun areContentsTheSame(oldItem: SelectedBetMatch, newItem: SelectedBetMatch): Boolean =
                 oldItem == newItem
         }
 

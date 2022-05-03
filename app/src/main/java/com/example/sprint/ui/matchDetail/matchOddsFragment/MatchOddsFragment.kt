@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sprint.common.BaseFragment
 import com.example.sprint.data.entities.MarketsItem
 import com.example.sprint.data.entities.OddModel
-import com.example.sprint.data.entities.OutcomesItem
-import com.example.sprint.data.entities.SelectedMatchOdd
+import com.example.sprint.data.entities.BetItem
+import com.example.sprint.data.entities.SelectedBetMatch
 import com.example.sprint.databinding.FragmentMatchOddsBinding
+import com.example.sprint.utils.AnalyticsHelper
 import com.example.sprint.utils.OddUtilHelper
 import com.example.sprint.utils.toast
 import com.naylalabs.scorely.adapters.OddParentListener
@@ -53,15 +54,15 @@ class MatchOddsFragment(val oddModel: OddModel?) :
             adapter = OddsParentAdapter(requireContext(),
                 oddModel?.bookmakers?.get(0)?.markets as ArrayList<MarketsItem>,
                 object : OddParentListener {
-                    override fun onOddItemSelected(outCome: OutcomesItem, marketsItem: MarketsItem) {
+                    override fun onOddItemSelected(betItem: BetItem, marketsItem: MarketsItem) {
                         //TODO FIX PARCELIZE DEFAULT VALUE PROBLEM
                         if( oddModel.id.let { oddUtilHelper.isHaveSelectedMatch(it.orEmpty()) }){
                             oddModel.id?.let { oddUtilHelper.removeSelectedOdd(it) }
                             requireContext().toast("Already added your cart  but changed with new selection")
                         }
                         oddUtilHelper.addSelectedOdd(
-                                SelectedMatchOdd(
-                                    outCome  = outCome,
+                                SelectedBetMatch(
+                                    betItem  = betItem,
                                     sportKey = this@MatchOddsFragment.oddModel.sportKey,
                                     id = this@MatchOddsFragment.oddModel.id,
                                     homeTeam = this@MatchOddsFragment.oddModel.homeTeam,
@@ -72,6 +73,7 @@ class MatchOddsFragment(val oddModel: OddModel?) :
                                 )
                                 )
                         requireContext().toast("Added to cart")
+                        logToFirebase(betItem,marketsItem)
 
                         adapter.notifyDataSetChanged()
                     }
@@ -82,6 +84,19 @@ class MatchOddsFragment(val oddModel: OddModel?) :
         } else {
             //show error widget
         }
+    }
+
+    private fun logToFirebase(betItem: BetItem, marketsItem: MarketsItem) {
+        val map = HashMap<String, Any?>()
+        oddModel?.apply {
+            map["id"] = id.toString()
+            map["betId"] = betItem.id.toString()
+            map["marketId"] = marketsItem.key
+            map["awayTeam"] = awayTeam.toString()
+            map["homeTeam"] = homeTeam.toString()
+        }
+
+        analyticsHelper.track(AnalyticsHelper.ADD_TO_CART_EVENT, map)
     }
 
 
