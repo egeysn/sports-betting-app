@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -15,7 +17,7 @@ import com.example.sprint.utils.toDetailCardDate
 
 
 class CouponsChildAdapter(val context: Context, private val items: ArrayList<SelectedMatchOdd>
-) : RecyclerView.Adapter<CouponsChildAdapter.CouponsChildViewHolder>() {
+) : ListAdapter<SelectedMatchOdd,CouponsChildAdapter.CouponsChildViewHolder>(REPO_COMPARATOR) {
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -88,6 +90,15 @@ class CouponsChildAdapter(val context: Context, private val items: ArrayList<Sel
             }
 
         }
+    }
 
+    companion object {
+        private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<SelectedMatchOdd>() {
+            override fun areItemsTheSame(oldItem: SelectedMatchOdd, newItem: SelectedMatchOdd): Boolean =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: SelectedMatchOdd, newItem: SelectedMatchOdd): Boolean =
+                oldItem == newItem
+        }
     }
 }
