@@ -1,6 +1,8 @@
 package com.naylalabs.scorely.ui.main.home.fixturesFragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +34,27 @@ class FixturesFragment() :
 
 
         setupObservers()
+        listeners()
+
         return binding.root
+    }
+
+    private fun listeners() {
+        binding.searchEt.addTextChangedListener(object:TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val input = p0.toString()
+                if(input.length > 2){
+                //TODO SEARCH
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+        })
     }
 
 

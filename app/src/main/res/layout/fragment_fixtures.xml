@@ -30,7 +30,7 @@
                 android:gravity="start"
                 android:hint="@string/search"
                 android:textColorHint="@color/gray3"
-                android:inputType="numberDecimal"
+                android:inputType="textFilter"
                 android:maxLength="40"
                 android:maxLines="1"
                 android:paddingHorizontal="10dp"

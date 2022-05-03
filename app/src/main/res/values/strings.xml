@@ -2,7 +2,7 @@
     <string name="app_name">SprintBet</string>
     <string name="default_notification_channel_id">Kotlin Base Notification-19972021</string>
     <string name="loading">Loading…</string>
-    <string name="bulletin">Bülten</string>
+    <string name="bulletin">Fixtures</string>
     <string name="favorites">Favoriler</string>
     <string name="no_results">No results 😓</string>
     <string name="coupon">Kupon</string>
