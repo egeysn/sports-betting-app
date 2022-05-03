@@ -2,9 +2,9 @@ package com.example.sprint.data.entities
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
 
-@Parcelize
 data class SelectedBet(
 
     val id: String?,
@@ -12,7 +12,7 @@ data class SelectedBet(
     val price: Double?,
 
     val name: String?
-) : Parcelable {
+) : Serializable {
 
 }
 

@@ -2,10 +2,11 @@ package com.example.sprint.data.entities
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
 
-@Parcelize
+
 data class BookmakersItem(
 
     @field:SerializedName("markets")
@@ -19,4 +20,4 @@ data class BookmakersItem(
 
     @field:SerializedName("key")
     val key: String?
-) : Parcelable
+) : Serializable

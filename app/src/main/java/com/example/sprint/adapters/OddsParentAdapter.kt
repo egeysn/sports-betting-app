@@ -72,7 +72,6 @@ class OddsParentAdapter(
                 LinearLayoutManager(binding.childRv.context, RecyclerView.HORIZONTAL, false)
             binding.childRv.apply {
                 layoutManager = childLayoutManager
-                //  adapter = OddsChildAdapter(bet.values as ArrayList<Value>)
                 adapter = OddsChildAdapter(bet,
                     object : OddsChildAdapter.OddItemListener {
                         override fun onOddItemSelected(outcomesItem: OutcomesItem) {

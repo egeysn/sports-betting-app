@@ -2,10 +2,10 @@ package com.example.sprint.data.entities
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
 
-@Parcelize
 data class ScoreItem(
     val score: String?,
     val name: String?
-) :Parcelable
+) : Serializable

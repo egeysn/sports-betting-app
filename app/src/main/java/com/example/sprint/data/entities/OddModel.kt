@@ -2,9 +2,10 @@ package com.example.sprint.data.entities
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
-@Parcelize
+
 data class OddModel(
 
 	@field:SerializedName("bookmakers")
@@ -27,5 +28,5 @@ data class OddModel(
 
 	@field:SerializedName("away_team")
 	val awayTeam: String?
-) : Parcelable
+) : Serializable
 

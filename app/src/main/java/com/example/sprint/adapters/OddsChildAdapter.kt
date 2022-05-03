@@ -54,7 +54,7 @@ class OddsChildAdapter(
                 oddTv.text = outcomesItem.price.toString()
 
                 //TODO FIX  INITIAL VALUE PROBLEM ON PARCELIZE CLASSES
-                if (outcomesItem.betId.let { oddUtilHelper.isHaveSelectedOdd(betId = it.orEmpty()) } || lastSelectedItem == adapterPosition) {
+                if (outcomesItem.id.let { oddUtilHelper.isHaveSelectedOdd(betId = it.orEmpty()) } || lastSelectedItem == adapterPosition) {
                     binding.oddsContainer.setCardBackgroundColor(
                         ContextCompat.getColor(
                             binding.root.context,

@@ -19,15 +19,24 @@ class OddUtilHelper {
         selectedMatchOdds.postValue(list)
     }
 
-    fun removeSelectedOdd(id: String) {
-        val list = selectedMatchOdds.value
-        if (!list.isNullOrEmpty()) {
-            for (item in list) {
-                if (item.id == id) {
-                    list.remove(item)
+    fun removeSelectedOdd(id: String): Boolean {
+        try {
+            val list = selectedMatchOdds.value
+            if (!list.isNullOrEmpty()) {
+                for (item in list) {
+                    if (item.id == id) {
+                        list.remove(item)
+                        selectedMatchOdds.postValue(list!!)
+                        break
+                    }
                 }
+
             }
+
+        } catch (e: Exception) {
+            return false
         }
+        return true
     }
 
     fun isHaveSelectedOdd(betId: String): Boolean {
@@ -35,7 +44,7 @@ class OddUtilHelper {
         return if (list.isNullOrEmpty()) {
             false
         } else {
-            val findOdd = list.find { it.outCome?.betId == betId }
+            val findOdd = list.find { it.outCome?.id == betId }
             Timber.d("isHaveSelectedOdd : $findOdd")
             findOdd != null
         }

@@ -3,8 +3,9 @@ package com.example.sprint.data.entities
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
-@Parcelize
+
 data class ScoreModel(
 
 	@field:SerializedName("scores")
@@ -33,5 +34,5 @@ data class ScoreModel(
 
 	@field:SerializedName("away_team")
 	val awayTeam: String?
-) :Parcelable
+) : Serializable
 

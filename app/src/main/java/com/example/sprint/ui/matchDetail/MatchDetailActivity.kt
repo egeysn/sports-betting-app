@@ -30,7 +30,7 @@ class MatchDetailActivity : BaseActivity() {
         binding = ActivityMatchDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        scoreModel = intent.getParcelableExtra<OddModel>(MATCH_DETAIL_DATA)!!
+        scoreModel = intent.getSerializableExtra(MATCH_DETAIL_DATA) as OddModel
         initViewPager()
         adjustUI()
         listeners()

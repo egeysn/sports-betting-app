@@ -13,12 +13,21 @@ import com.example.sprint.data.entities.SelectedMatchOdd
 import com.example.sprint.data.locale.MarketType
 import com.example.sprint.databinding.CouponMatchItemBinding
 import com.example.sprint.utils.Constants
+import com.example.sprint.utils.OddUtilHelper
 import com.example.sprint.utils.toDetailCardDate
 
 
-class CouponsChildAdapter(val context: Context, private val items: ArrayList<SelectedMatchOdd>
-) : ListAdapter<SelectedMatchOdd,CouponsChildAdapter.CouponsChildViewHolder>(REPO_COMPARATOR) {
+class CouponMatchAdapter(val context: Context, private val items: ArrayList<SelectedMatchOdd>
+) : ListAdapter<SelectedMatchOdd,CouponMatchAdapter.CouponsChildViewHolder>(REPO_COMPARATOR) {
 
+
+    private var oddutilHelper:OddUtilHelper = OddUtilHelper.getInstance()
+
+    private var listener : CouponMatchItemListener? = null
+
+    fun setListener(listener : CouponMatchItemListener){
+        this.listener = listener
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setItems(items: ArrayList<SelectedMatchOdd>) {
@@ -29,7 +38,7 @@ class CouponsChildAdapter(val context: Context, private val items: ArrayList<Sel
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CouponsChildViewHolder {
         val itemBinding =
-            com.example.sprint.databinding.CouponMatchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            CouponMatchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return CouponsChildViewHolder(itemBinding)
     }
@@ -75,8 +84,12 @@ class CouponsChildAdapter(val context: Context, private val items: ArrayList<Sel
                     .load(Constants.AWAY_TEAM_LOGO)
                     .transform(CircleCrop())
                     .into(awayClubIv)
-            }
 
+                removeIv.setOnClickListener {
+                    listener?.onRemoveClicked(pos = bindingAdapterPosition, selectedMatchOdd = item )
+
+                }
+            }
 
 
 
@@ -92,6 +105,9 @@ class CouponsChildAdapter(val context: Context, private val items: ArrayList<Sel
         }
     }
 
+    interface CouponMatchItemListener {
+        fun onRemoveClicked(pos: Int, selectedMatchOdd: SelectedMatchOdd)
+    }
     companion object {
         private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<SelectedMatchOdd>() {
             override fun areItemsTheSame(oldItem: SelectedMatchOdd, newItem: SelectedMatchOdd): Boolean =
@@ -100,5 +116,7 @@ class CouponsChildAdapter(val context: Context, private val items: ArrayList<Sel
             override fun areContentsTheSame(oldItem: SelectedMatchOdd, newItem: SelectedMatchOdd): Boolean =
                 oldItem == newItem
         }
+
+
     }
 }

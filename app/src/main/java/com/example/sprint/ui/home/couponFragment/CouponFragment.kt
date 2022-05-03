@@ -8,12 +8,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sprint.adapters.CouponsChildAdapter
+import com.example.sprint.adapters.CouponMatchAdapter
 import com.example.sprint.common.BaseFragment
 import com.example.sprint.data.entities.SelectedMatchOdd
 import com.example.sprint.databinding.FragmentCouponBinding
 import com.example.sprint.ui.home.HomeActivity
 import com.example.sprint.utils.OddUtilHelper
+import com.example.sprint.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -27,7 +28,7 @@ class CouponFragment() :
     private lateinit var binding: FragmentCouponBinding
     private val viewModel: CouponFragmentViewModel by activityViewModels()
 
-    private lateinit var adapter: CouponsChildAdapter
+    private lateinit var adapter: CouponMatchAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,7 +76,16 @@ class CouponFragment() :
             )
             )
             binding.matchRv.layoutManager = layoutManager
-            adapter = CouponsChildAdapter(requireContext(), matchList)
+            adapter = CouponMatchAdapter(requireContext(), matchList)
+            adapter.setListener(object : CouponMatchAdapter.CouponMatchItemListener {
+                override fun onRemoveClicked(pos: Int, selectedMatchOdd: SelectedMatchOdd) {
+                  val status =   selectedMatchOdd.id?.let { oddUtilHelper.removeSelectedOdd(it) }
+                    if(status == true)
+                    adapter.notifyItemRemoved(pos)
+                    context?.toast("Removed item")
+                }
+
+            })
             binding.matchRv.adapter = adapter
         }
 
