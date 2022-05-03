@@ -39,8 +39,6 @@
         </activity>
         <activity android:name="com.example.sprint.common.BaseActivity" />
         <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name="com.example.sprint.ui.characters.CharactersActivity" />
-        <activity android:name="com.example.sprint.ui.characterDetail.CharacterDetailActivity" />
         <activity android:name=".ui.matchDetail.MatchDetailActivity" />
     </application>
 
