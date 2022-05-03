@@ -41,15 +41,11 @@ class FixturesFragment() :
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     val fixtureList = it.data
-                    if (!fixtureList.isNullOrEmpty()) {
-                        onFixtureListFetched(fixtureList)
-                    } else {
-                        binding.emptyList.visibility = View.VISIBLE
-                    }
+                    onFixtureListFetched(fixtureList)
                     hideLoading()
                 }
                 Resource.Status.ERROR -> {
-                    binding.emptyList.visibility = View.VISIBLE
+                    onFixtureListFetched(null)
                     hideLoading()
                 }
                 Resource.Status.LOADING -> {
@@ -60,9 +56,17 @@ class FixturesFragment() :
 
     }
 
-    private fun onFixtureListFetched(fixtureList: ArrayList<OddModel>) {
-        val groupList = fixtureList.groupBy { it.sportTitle }
-        initRecyclerView(groupList as HashMap<String, List<OddModel>>)
+    private fun onFixtureListFetched(fixtureList: ArrayList<OddModel>?) {
+        if (!fixtureList.isNullOrEmpty()) {
+            binding.body.visibility = View.VISIBLE
+            binding.emptyList.visibility = View.GONE
+            val groupList = fixtureList.groupBy { it.sportTitle }
+            initRecyclerView(groupList as HashMap<String, List<OddModel>>)
+        }else{
+            binding.body.visibility = View.GONE
+            binding.emptyList.visibility = View.VISIBLE
+        }
+
     }
 
 
