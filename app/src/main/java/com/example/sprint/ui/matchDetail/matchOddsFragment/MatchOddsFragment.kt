@@ -55,25 +55,21 @@ class MatchOddsFragment(val oddModel: OddModel?) :
                 oddModel?.bookmakers?.get(0)?.markets as ArrayList<MarketsItem>,
                 object : OddParentListener {
                     override fun onOddItemSelected(betItem: BetItem, marketsItem: MarketsItem) {
-                        //TODO FIX PARCELIZE DEFAULT VALUE PROBLEM
-                        if( oddModel.id.let { oddUtilHelper.isHaveSelectedMatch(it.orEmpty()) }){
-                            oddModel.id?.let { oddUtilHelper.removeSelectedOdd(it) }
-                            requireContext().toast("Already added your cart  but changed with new selection")
+
+                        //If already match added to cart, check add / remove
+                        if (oddUtilHelper.isHaveSelectedMatch(oddModel.id!!)) {
+                            // If selected odd clicked remove else add
+                            if (oddUtilHelper.isSameBet(betId = betItem.id!!)) {
+                                oddUtilHelper.removeSelectedBet(oddModel.id)
+                                requireContext().toast("Removed selection")
+                            } else {
+                                requireContext().toast("Update selection")
+                                oddUtilHelper.updateSelectedBet(oddModel.id, betItem = betItem)
+                            }
+
+                        } else {
+                            addSelectedOddModel(betItem = betItem, marketsItem = marketsItem)
                         }
-                        oddUtilHelper.addSelectedOdd(
-                                SelectedBetMatch(
-                                    betItem  = betItem,
-                                    sportKey = this@MatchOddsFragment.oddModel.sportKey,
-                                    id = this@MatchOddsFragment.oddModel.id,
-                                    homeTeam = this@MatchOddsFragment.oddModel.homeTeam,
-                                    sportTitle = this@MatchOddsFragment.oddModel.sportTitle,
-                                    commenceTime = this@MatchOddsFragment.oddModel.commenceTime,
-                                    awayTeam = this@MatchOddsFragment.oddModel.awayTeam,
-                                    marketsItem = marketsItem
-                                )
-                                )
-                        requireContext().toast("Added to cart")
-                        logToFirebase(betItem,marketsItem)
 
                         adapter.notifyDataSetChanged()
                     }
@@ -84,6 +80,24 @@ class MatchOddsFragment(val oddModel: OddModel?) :
         } else {
             //show error widget
         }
+    }
+
+    private fun addSelectedOddModel(betItem: BetItem, marketsItem: MarketsItem) {
+        val selectedBet = SelectedBetMatch(
+            betItem = betItem,
+            sportKey = this@MatchOddsFragment.oddModel?.sportKey,
+            id = this@MatchOddsFragment.oddModel?.id,
+            homeTeam = this@MatchOddsFragment.oddModel?.homeTeam,
+            sportTitle = this@MatchOddsFragment.oddModel?.sportTitle,
+            commenceTime = this@MatchOddsFragment.oddModel?.commenceTime,
+            awayTeam = this@MatchOddsFragment.oddModel?.awayTeam,
+            marketsItem = marketsItem
+        )
+        oddUtilHelper.addSelectedBet(
+            selectedBet
+        )
+        requireContext().toast("Added to cart")
+        logToFirebase(betItem, marketsItem)
     }
 
     private fun logToFirebase(betItem: BetItem, marketsItem: MarketsItem) {

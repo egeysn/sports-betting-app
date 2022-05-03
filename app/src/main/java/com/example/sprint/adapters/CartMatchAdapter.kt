@@ -86,7 +86,7 @@ class CartMatchAdapter(val context: Context, private val items: ArrayList<Select
                     .into(awayClubIv)
 
                 removeIv.setOnClickListener {
-                    listener?.onRemoveClicked(pos = bindingAdapterPosition, selectedBetMatch = item )
+                    listener?.onRemoveClicked(pos = bindingAdapterPosition, match = item )
 
                 }
             }
@@ -106,7 +106,9 @@ class CartMatchAdapter(val context: Context, private val items: ArrayList<Select
     }
 
     interface CouponMatchItemListener {
-        fun onRemoveClicked(pos: Int, selectedBetMatch: SelectedBetMatch)
+        fun onRemoveClicked(pos: Int, match: SelectedBetMatch)
+
+        fun onItemClicked(pos:Int,match: SelectedBetMatch)
     }
     companion object {
         private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<SelectedBetMatch>() {

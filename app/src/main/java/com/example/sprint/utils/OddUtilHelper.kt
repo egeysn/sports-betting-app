@@ -1,6 +1,7 @@
 package com.example.sprint.utils
 
 import androidx.lifecycle.MutableLiveData
+import com.example.sprint.data.entities.BetItem
 import com.example.sprint.data.entities.SelectedBetMatch
 import timber.log.Timber
 
@@ -10,7 +11,7 @@ class OddUtilHelper {
     val selectedBetMatchOdds: MutableLiveData<ArrayList<SelectedBetMatch>> = MutableLiveData()
 
 
-    fun addSelectedOdd(betMatch: SelectedBetMatch) {
+    fun addSelectedBet(betMatch: SelectedBetMatch) {
         val list = arrayListOf<SelectedBetMatch>()
         if (!selectedBetMatchOdds.value.isNullOrEmpty()) {
             list.addAll(selectedBetMatchOdds.value!!)
@@ -19,7 +20,26 @@ class OddUtilHelper {
         selectedBetMatchOdds.postValue(list)
     }
 
-    fun removeSelectedOdd(id: String): Boolean {
+    fun updateSelectedBet(id:String,betItem: BetItem) {
+        try {
+            val list = selectedBetMatchOdds.value
+            if (!list.isNullOrEmpty()) {
+                for (item in list) {
+                    if (item.id == id) {
+                        item.betItem = betItem
+                        selectedBetMatchOdds.postValue(list!!)
+                        break
+                    }
+                }
+
+            }
+
+        } catch (e: Exception) {
+
+        }
+    }
+
+    fun removeSelectedBet(id: String): Boolean {
         try {
             val list = selectedBetMatchOdds.value
             if (!list.isNullOrEmpty()) {
@@ -39,16 +59,6 @@ class OddUtilHelper {
         return false
     }
 
-    fun isHaveSelectedOdd(betId: String): Boolean {
-        val list = selectedBetMatchOdds.value
-        return if (list.isNullOrEmpty()) {
-            false
-        } else {
-            val findOdd = list.find { it.betItem?.id == betId }
-            Timber.d("isHaveSelectedOdd : $findOdd")
-            findOdd != null
-        }
-    }
 
     fun isHaveSelectedMatch(id: String): Boolean {
         val list = selectedBetMatchOdds.value
@@ -57,6 +67,17 @@ class OddUtilHelper {
         } else {
             val findOdd = list.find { it.id == id }
             Timber.d("isHaveSelectedOdd : $findOdd")
+            findOdd != null
+        }
+    }
+
+    fun isSameBet(betId: String): Boolean {
+        val list = selectedBetMatchOdds.value
+        return if (list.isNullOrEmpty()) {
+            false
+        } else {
+            val findOdd = list.find { it.betItem?.id == betId }
+            Timber.d("isSameBet : $findOdd")
             findOdd != null
         }
     }

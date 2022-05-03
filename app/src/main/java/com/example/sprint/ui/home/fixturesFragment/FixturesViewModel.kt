@@ -19,7 +19,6 @@ class FixturesViewModel @Inject constructor(private val repository: Repository) 
 
     fun fetchFixtures(): LiveData<Resource<ArrayList<OddModel>>> {
         val response =  repository.getOdds("eu","h2h,spreads,totals")
-        fixtures.postValue(response.value)
         return response
     }
 

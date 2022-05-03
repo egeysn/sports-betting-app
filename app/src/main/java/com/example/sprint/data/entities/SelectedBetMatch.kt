@@ -3,7 +3,7 @@ package com.example.sprint.data.entities
 
 data class SelectedBetMatch(
 
-    val betItem : BetItem?,
+    var betItem : BetItem?,
 
     val sportKey: String?,
 

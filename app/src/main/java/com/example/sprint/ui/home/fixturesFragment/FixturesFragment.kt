@@ -14,6 +14,9 @@ import com.example.sprint.data.entities.OddModel
 import com.example.sprint.databinding.FragmentFixturesBinding
 import com.example.sprint.utils.Resource
 import com.naylalabs.scorely.adapters.FixturesParentAdapter
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class FixturesFragment() :
     BaseFragment() {
@@ -63,6 +66,7 @@ class FixturesFragment() :
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     val fixtureList = it.data
+
                     onFixtureListFetched(fixtureList)
                     hideLoading()
                 }
@@ -79,7 +83,9 @@ class FixturesFragment() :
     }
 
     private fun onFixtureListFetched(fixtureList: ArrayList<OddModel>?) {
+        //TODO TEMPORARY SOLUTION : We need manipulate data because  we need to bet ıtem ıd and backend not giving to us?
         if (!fixtureList.isNullOrEmpty()) {
+          val manipulateData = manipulateData(fixtureList)
             binding.body.visibility = View.VISIBLE
             binding.emptyList.visibility = View.GONE
             val groupList = fixtureList.groupBy { it.sportTitle }
@@ -89,6 +95,19 @@ class FixturesFragment() :
             binding.emptyList.visibility = View.VISIBLE
         }
 
+    }
+
+    private fun manipulateData(fixtureList: ArrayList<OddModel>) :  ArrayList<OddModel>{
+        for(item in fixtureList){
+            item.bookmakers?.forEach { it ->
+                it?.markets?.forEach {marketItem->
+                    marketItem?.outcomes?.forEach {betItem ->
+                        betItem?.id = UUID.randomUUID().toString()
+                    }
+                }
+            }
+        }
+        return fixtureList
     }
 
 

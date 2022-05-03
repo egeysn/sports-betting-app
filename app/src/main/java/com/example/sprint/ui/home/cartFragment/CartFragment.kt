@@ -15,6 +15,7 @@ import com.example.sprint.common.BaseFragment
 import com.example.sprint.data.entities.SelectedBetMatch
 import com.example.sprint.databinding.FragmentCartBinding
 import com.example.sprint.ui.home.HomeActivity
+import com.example.sprint.ui.matchDetail.MatchDetailActivity
 import com.example.sprint.utils.AnalyticsHelper
 import com.example.sprint.utils.OddUtilHelper
 import com.example.sprint.utils.toast
@@ -121,13 +122,16 @@ class CartFragment() :
             adapter = CartMatchAdapter(requireContext(), betMatchList)
             adapter.setListener(object : CartMatchAdapter.CouponMatchItemListener {
                 override fun onRemoveClicked(pos: Int, selectedBetMatch: SelectedBetMatch) {
-                    val status = selectedBetMatch.id?.let { oddUtilHelper.removeSelectedOdd(it) }
+                    val status = selectedBetMatch.id?.let { oddUtilHelper.removeSelectedBet(it) }
                     if (status == true){
                         adapter.notifyItemRemoved(pos)
                         logToFirebase(modelBet = selectedBetMatch)
                         context?.toast("Removed item")
                     }
 
+                }
+
+                override fun onItemClicked(pos: Int, match: SelectedBetMatch) {
                 }
 
             })
