@@ -14,9 +14,15 @@ The purpose of this project to illustrate the usage of MVVM architecture design 
 10. Google Sign With Firebase Auth
 11. Firebase Analytics 
 12. Firebase Remote Config
-13. JetPack Libraries
+13. Lottie
+14. JetPack Libraries
 
 # DEMO
 
-https://user-images.githubusercontent.com/44908368/166659451-e39d48c9-3b93-4f21-837c-92b2264b927f.mp4
+
+
+https://user-images.githubusercontent.com/44908368/166661286-8dceb481-238c-4f25-9acf-ae76f54a2e04.mp4
+
+
+
 
