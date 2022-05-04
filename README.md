@@ -13,4 +13,5 @@ The purpose of this project to illustrate the usage of MVVM architecture design 
 9.  [Sports Betting Api](https://the-odds-api.com/)
 10. Google Sign With Firebase Auth
 11. Firebase Analytics 
-12. JetPack Libraries
+12. Firebase Remote Config
+13. JetPack Libraries
