@@ -15,3 +15,8 @@ The purpose of this project to illustrate the usage of MVVM architecture design 
 11. Firebase Analytics 
 12. Firebase Remote Config
 13. JetPack Libraries
+
+# DEMO
+
+https://user-images.githubusercontent.com/44908368/166659451-e39d48c9-3b93-4f21-837c-92b2264b927f.mp4
+
