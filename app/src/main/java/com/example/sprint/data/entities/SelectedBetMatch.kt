@@ -17,6 +17,6 @@ data class SelectedBetMatch(
 
     val awayTeam: String?,
 
-    val marketsItem:MarketsItem?
+    var marketsItem:MarketsItem?
 )
 

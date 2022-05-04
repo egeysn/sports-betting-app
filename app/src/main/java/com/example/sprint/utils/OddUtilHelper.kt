@@ -2,6 +2,7 @@ package com.example.sprint.utils
 
 import androidx.lifecycle.MutableLiveData
 import com.example.sprint.data.entities.BetItem
+import com.example.sprint.data.entities.MarketsItem
 import com.example.sprint.data.entities.SelectedBetMatch
 import timber.log.Timber
 
@@ -20,12 +21,13 @@ class OddUtilHelper {
         selectedBetMatchOdds.postValue(list)
     }
 
-    fun updateSelectedBet(id:String,betItem: BetItem) {
+    fun updateSelectedBet(id:String,betItem: BetItem,marketsItem: MarketsItem) {
         try {
             val list = selectedBetMatchOdds.value
             if (!list.isNullOrEmpty()) {
                 for (item in list) {
                     if (item.id == id) {
+                        item.marketsItem = marketsItem
                         item.betItem = betItem
                         selectedBetMatchOdds.postValue(list!!)
                         break

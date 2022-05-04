@@ -14,7 +14,6 @@ import com.example.sprint.data.entities.OddModel
 import com.example.sprint.databinding.FragmentFixturesBinding
 import com.example.sprint.utils.Resource
 import com.naylalabs.scorely.adapters.FixturesParentAdapter
-import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap

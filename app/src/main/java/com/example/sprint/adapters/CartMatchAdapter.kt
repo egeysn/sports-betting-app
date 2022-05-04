@@ -69,7 +69,7 @@ class CartMatchAdapter(val context: Context, private val items: ArrayList<Select
                     MarketType.TOTALS -> labelTv = "Goals Over/Under"
                     MarketType.OUTRIGHTS -> labelTv = "Outrights, Futures"
                     MarketType.H2H_LAY -> labelTv = "Head to head, Moneyline"
-                    MarketType.OUTRIGHTS_LAY -> "Outrights, Futures"
+                    MarketType.OUTRIGHTS_LAY ->labelTv =  "Outrights, Futures"
                     else -> { // Note the block
                     }
                 }

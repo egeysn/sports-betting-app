@@ -15,7 +15,6 @@ import com.example.sprint.common.BaseFragment
 import com.example.sprint.data.entities.SelectedBetMatch
 import com.example.sprint.databinding.FragmentCartBinding
 import com.example.sprint.ui.home.HomeActivity
-import com.example.sprint.ui.matchDetail.MatchDetailActivity
 import com.example.sprint.utils.AnalyticsHelper
 import com.example.sprint.utils.OddUtilHelper
 import com.example.sprint.utils.toast

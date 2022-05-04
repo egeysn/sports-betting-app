@@ -33,7 +33,6 @@ class MatchOddsFragment(val oddModel: OddModel?) :
     private val viewModel: MatchOddsFragmentViewModel by activityViewModels()
 
     private lateinit var adapter: OddsParentAdapter
-    lateinit var layoutManager: LinearLayoutManager
 
 
     override fun onCreateView(
@@ -64,7 +63,7 @@ class MatchOddsFragment(val oddModel: OddModel?) :
                                 requireContext().toast("Removed selection")
                             } else {
                                 requireContext().toast("Update selection")
-                                oddUtilHelper.updateSelectedBet(oddModel.id, betItem = betItem)
+                                oddUtilHelper.updateSelectedBet(oddModel.id,betItem = betItem, marketsItem = marketsItem)
                             }
 
                         } else {
@@ -82,8 +81,8 @@ class MatchOddsFragment(val oddModel: OddModel?) :
         }
     }
 
-    private fun addSelectedOddModel(betItem: BetItem, marketsItem: MarketsItem) {
-        val selectedBet = SelectedBetMatch(
+    private fun getSelectedBetMatch(betItem: BetItem, marketsItem: MarketsItem):SelectedBetMatch{
+        return SelectedBetMatch(
             betItem = betItem,
             sportKey = this@MatchOddsFragment.oddModel?.sportKey,
             id = this@MatchOddsFragment.oddModel?.id,
@@ -93,6 +92,9 @@ class MatchOddsFragment(val oddModel: OddModel?) :
             awayTeam = this@MatchOddsFragment.oddModel?.awayTeam,
             marketsItem = marketsItem
         )
+    }
+    private fun addSelectedOddModel(betItem: BetItem, marketsItem: MarketsItem) {
+        val selectedBet = getSelectedBetMatch(betItem,marketsItem)
         oddUtilHelper.addSelectedBet(
             selectedBet
         )
